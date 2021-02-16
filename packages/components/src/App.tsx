@@ -13,6 +13,7 @@ import { AppHeader } from './AppHeader'
 export function App() {
   return (
     <>
+      <h1>Hello</h1>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <ScrollView
