@@ -9,11 +9,13 @@ import {
 } from 'react-native'
 
 import { AppHeader } from './AppHeader'
+import { HomeScreen } from './home/home'
 
 export function App() {
   return (
     <>
       <h1>Hello</h1>
+      <HomeScreen />
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <ScrollView

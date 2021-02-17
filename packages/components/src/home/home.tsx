@@ -2,7 +2,7 @@ import React from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import Swiper from 'react-native-web-swiper'
 
-export default function HomeScreen() {
+export function HomeScreen() {
   return (
     <View style={{ flex: 1 }}>
       <View style={{ flex: 1 }}>
