@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, TouchableOpacity, View } from 'react-native'
+import { Text, TouchableOpacity, View, Button } from 'react-native'
 import Swiper from 'react-native-web-swiper'
 
 export function HomeScreen() {
@@ -13,9 +13,8 @@ export function HomeScreen() {
             dotsTouchable: true,
             prevPos: 'left',
             nextPos: 'right',
-            nextTitle: '>',
+            nextTitle: 'Next',
             nextTitleStyle: { color: 'red', fontSize: 24, fontWeight: '500' },
-            // eslint-disable-next-line react/prefer-stateless-function
             PrevComponent: class PrevComponent extends React.Component {
               render() {
                 const { onPress }: { onPress: never } = this.props as any
@@ -28,9 +27,17 @@ export function HomeScreen() {
                         fontWeight: '500',
                       }}
                     >
-                      {'<'}
+                      Prev
                     </Text>
                   </TouchableOpacity>
+                )
+              }
+            },
+            DotComponent: class DotComponent extends React.Component {
+              render() {
+                const { index, isActive, onPress } = this.props as any
+                return (
+                  <Text onPress={onPress}>Your Custom Dot {index + 1}</Text>
                 )
               }
             },
@@ -45,6 +52,12 @@ export function HomeScreen() {
             }}
           >
             <Text>Slide 1</Text>
+            <Button
+              title="Left button"
+              onPress={() => {
+                alert('stupid')
+              }}
+            />
           </View>
           <View
             style={{
@@ -55,6 +68,12 @@ export function HomeScreen() {
             }}
           >
             <Text>Slide 2</Text>
+            <Button
+              title="Left button"
+              onPress={() => {
+                alert('stupid')
+              }}
+            />
           </View>
           <View
             style={{
@@ -65,10 +84,16 @@ export function HomeScreen() {
             }}
           >
             <Text>Slide 3</Text>
+            <Button
+              title="Left button"
+              onPress={() => {
+                alert('stupid')
+              }}
+            />
           </View>
         </Swiper>
       </View>
-      <View style={{ flex: 1 }}>
+      {/* <View style={{ flex: 1 }}>
         <Swiper
           vertical
           loop
@@ -111,7 +136,7 @@ export function HomeScreen() {
             <Text>Slide 3</Text>
           </View>
         </Swiper>
-      </View>
+      </View> */}
     </View>
   )
 }

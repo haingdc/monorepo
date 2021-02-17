@@ -26,5 +26,7 @@ module.exports = {
     'react-native/no-inline-styles': 0,
     'react/no-this-in-sfc': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    'max-classes-per-file': 'off',
+    'react/prefer-stateless-function': 0,
   },
 }
