@@ -10,6 +10,9 @@ import {
 import Swiper from 'react-native-web-swiper'
 
 const styles = StyleSheet.create({
+  title: {
+    color: '#EF4339',
+  },
   container: {
     paddingTop: 50,
   },
@@ -74,15 +77,14 @@ export function HomeScreen() {
           >
             <Image
               style={styles.tinyLogo}
-              source={{ uri: 'https://reactnative.dev/img/tiny_logo.png' }}
+              source={require('./Illustration.png')}
             />
-            <Text>Slide 1</Text>
-            <Button
-              title="Left button"
-              onPress={() => {
-                alert('stupid')
-              }}
-            />
+            <Text style={styles.title}>Search and save your preference</Text>
+            <Text>
+              Browse best hotels from 40,000+ database that fits your unique
+              needs
+            </Text>
+            <Button title="Next" onPress={() => {}} />
           </View>
           <View
             style={{
