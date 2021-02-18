@@ -1,13 +1,34 @@
 import React from 'react'
-import { Text, TouchableOpacity, View, Button } from 'react-native'
+import {
+  Text,
+  TouchableOpacity,
+  View,
+  Button,
+  Image,
+  StyleSheet,
+} from 'react-native'
 import Swiper from 'react-native-web-swiper'
+
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 50,
+  },
+  tinyLogo: {
+    width: 50,
+    height: 50,
+  },
+  logo: {
+    width: 66,
+    height: 58,
+  },
+})
 
 export function HomeScreen() {
   return (
     <View style={{ flex: 1 }}>
       <View style={{ flex: 1 }}>
         <Swiper
-          from={1}
+          from={0}
           minDistanceForAction={0.1}
           controlsProps={{
             dotsTouchable: true,
@@ -33,14 +54,14 @@ export function HomeScreen() {
                 )
               }
             },
-            DotComponent: class DotComponent extends React.Component {
-              render() {
-                const { index, isActive, onPress } = this.props as any
-                return (
-                  <Text onPress={onPress}>Your Custom Dot {index + 1}</Text>
-                )
-              }
-            },
+            // DotComponent: class DotComponent extends React.Component {
+            //   render() {
+            //     const { index, isActive, onPress } = this.props as any
+            //     return (
+            //       <Text onPress={onPress}>Your Custom Dot {index + 1}</Text>
+            //     )
+            //   }
+            // },
           }}
         >
           <View
@@ -51,6 +72,10 @@ export function HomeScreen() {
               backgroundColor: 'rgba(20,20,200,0.3)',
             }}
           >
+            <Image
+              style={styles.tinyLogo}
+              source={{ uri: 'https://reactnative.dev/img/tiny_logo.png' }}
+            />
             <Text>Slide 1</Text>
             <Button
               title="Left button"
