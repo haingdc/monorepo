@@ -12,6 +12,17 @@ import Swiper from 'react-native-web-swiper'
 const styles = StyleSheet.create({
   title: {
     color: '#EF4339',
+    fontSize: 20,
+    lineHeight: 25,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  description: {
+    color: '#333333',
+    fontSize: 16,
+    lineHeight: 18,
+    fontWeight: 'normal',
+    textAlign: 'center',
   },
   container: {
     paddingTop: 50,
@@ -80,10 +91,10 @@ export function HomeScreen() {
               source={require('./Illustration.png')}
             />
             <Text style={styles.title}>Search and save your preference</Text>
-            <Text>
-              Browse best hotels from 40,000+ database that fits your unique
-              needs
+            <Text style={styles.description}>
+              Browse best hotels from 40,000+
             </Text>
+            <Text>database that fits your unique needs</Text>
             <Button title="Next" onPress={() => {}} />
           </View>
           <View
