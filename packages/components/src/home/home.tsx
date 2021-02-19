@@ -9,6 +9,33 @@ import {
 } from 'react-native'
 import Swiper from 'react-native-web-swiper'
 
+const buttonStyles = StyleSheet.create({
+  appButtonContainer: {
+    elevation: 8,
+    backgroundColor: '#EF4339',
+    borderRadius: 4,
+    paddingVertical: 12,
+    paddingHorizontal: 12,
+    width: 280,
+  },
+  appButtonText: {
+    fontSize: 13,
+    color: '#fff',
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    textTransform: 'capitalize',
+  },
+})
+
+const AppButton = (props) => {
+  const { title, onPress } = props
+  return (
+    <TouchableOpacity onPress={onPress} style={buttonStyles.appButtonContainer}>
+      <Text style={buttonStyles.appButtonText}>{title}</Text>
+    </TouchableOpacity>
+  )
+}
+
 const styles = StyleSheet.create({
   title: {
     color: '#EF4339',
@@ -39,7 +66,7 @@ const styles = StyleSheet.create({
 
 export function HomeScreen() {
   return (
-    <View style={{ flex: 1 }}>
+    <View nativeID="todo" style={{ flex: 1 }}>
       <View style={{ flex: 1 }}>
         <Swiper
           from={0}
@@ -61,9 +88,23 @@ export function HomeScreen() {
                         fontSize: 24,
                         fontWeight: '500',
                       }}
-                    >
-                      Prev
-                    </Text>
+                    />
+                  </TouchableOpacity>
+                )
+              }
+            },
+            NextComponent: class PrevComponent extends React.Component {
+              render() {
+                const { onPress }: { onPress: never } = this.props as any
+                return (
+                  <TouchableOpacity onPress={onPress}>
+                    <Text
+                      style={{
+                        color: 'white',
+                        fontSize: 24,
+                        fontWeight: '500',
+                      }}
+                    />
                   </TouchableOpacity>
                 )
               }
@@ -95,7 +136,7 @@ export function HomeScreen() {
               Browse best hotels from 40,000+
             </Text>
             <Text>database that fits your unique needs</Text>
-            <Button title="Next" onPress={() => {}} />
+            <AppButton title="Next" onPress={() => {}} />
           </View>
           <View
             style={{
@@ -106,12 +147,7 @@ export function HomeScreen() {
             }}
           >
             <Text>Slide 2</Text>
-            <Button
-              title="Left button"
-              onPress={() => {
-                alert('stupid')
-              }}
-            />
+            <AppButton title="Next" onPress={() => {}} />
           </View>
           <View
             style={{
@@ -122,12 +158,7 @@ export function HomeScreen() {
             }}
           >
             <Text>Slide 3</Text>
-            <Button
-              title="Left button"
-              onPress={() => {
-                alert('stupid')
-              }}
-            />
+            <AppButton title="Get Started" onPress={() => {}} />
           </View>
         </Swiper>
       </View>
