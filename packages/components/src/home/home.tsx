@@ -146,7 +146,11 @@ export function HomeScreen() {
               backgroundColor: 'rgba(20,200,20,0.3)',
             }}
           >
-            <Text>Slide 2</Text>
+            <Text style={styles.title}>Find the best deals</Text>
+            <Text style={styles.description}>
+              Find the best deals from any season and
+            </Text>
+            <Text>book from a curated list</Text>
             <AppButton title="Next" onPress={() => {}} />
           </View>
           <View
@@ -157,7 +161,11 @@ export function HomeScreen() {
               backgroundColor: 'rgba(200,20,20,0.3)',
             }}
           >
-            <Text>Slide 3</Text>
+            <Text style={styles.title}>Book and enjoy your stay</Text>
+            <Text style={styles.description}>
+              Select the hotel and date as per your
+            </Text>
+            <Text>preference to book and have a pleasant stay</Text>
             <AppButton title="Get Started" onPress={() => {}} />
           </View>
         </Swiper>
