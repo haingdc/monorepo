@@ -64,6 +64,39 @@ const styles = StyleSheet.create({
   },
 })
 
+
+const dotStyles = StyleSheet.create({
+  dot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: '#EF4339',
+    borderStyle: 'solid',
+    backgroundColor: '#fff',
+    marginRight: 7,
+  },
+  activeDot: {
+    width: 20,
+    backgroundColor: '#EF4339',
+  },
+  lastDot: {
+    marginRight: 0,
+  },
+});
+class DotComponent extends React.Component {
+  render() {
+    const { index, isActive, onPress } = this.props as any
+    // return <Text onPress={onPress}>{index + 1}</Text>
+    return (
+      <View
+        nativeID="todo-silly"
+        style={[dotStyles.dot, isActive ? dotStyles.activeDot : {}]}
+       />
+    )
+  }
+}
+
 export function HomeScreen() {
   return (
     <View nativeID="todo" style={{ flex: 1 }}>
@@ -109,14 +142,7 @@ export function HomeScreen() {
                 )
               }
             },
-            // DotComponent: class DotComponent extends React.Component {
-            //   render() {
-            //     const { index, isActive, onPress } = this.props as any
-            //     return (
-            //       <Text onPress={onPress}>Your Custom Dot {index + 1}</Text>
-            //     )
-            //   }
-            // },
+            DotComponent,
           }}
         >
           <View
