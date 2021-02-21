@@ -64,7 +64,6 @@ const styles = StyleSheet.create({
   },
 })
 
-
 const dotStyles = StyleSheet.create({
   dot: {
     width: 10,
@@ -92,7 +91,7 @@ class DotComponent extends React.Component {
       <View
         nativeID="todo-silly"
         style={[dotStyles.dot, isActive ? dotStyles.activeDot : {}]}
-       />
+      />
     )
   }
 }
