@@ -1,6 +1,7 @@
 import React from 'react'
 import {
   Text,
+  TextInput,
   TouchableOpacity,
   View,
   Button,
@@ -82,7 +83,7 @@ const dotStyles = StyleSheet.create({
   lastDot: {
     marginRight: 0,
   },
-});
+})
 class DotComponent extends React.Component {
   render() {
     const { index, isActive, onPress } = this.props as any
@@ -96,12 +97,23 @@ class DotComponent extends React.Component {
   }
 }
 
+const UselessTextInput = () => {
+  const [value, onChangeText] = React.useState('Useless Placeholder')
+  return (
+    <TextInput
+      style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+      onChangeText={(text) => onChangeText(text)}
+      value={value}
+    />
+  )
+}
+
 export function HomeScreen() {
   return (
     <View nativeID="todo" style={{ flex: 1 }}>
       <View style={{ flex: 1 }}>
         <Swiper
-          from={0}
+          from={3}
           minDistanceForAction={0.1}
           controlsProps={{
             dotsTouchable: true,
@@ -192,6 +204,25 @@ export function HomeScreen() {
             </Text>
             <Text>preference to book and have a pleasant stay</Text>
             <AppButton title="Get Started" onPress={() => {}} />
+          </View>
+          <View
+            style={{
+              flex: 1,
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: 'rgba(200,20,20,0.3)',
+            }}
+          >
+            <UselessTextInput />
+            <UselessTextInput />
+            <UselessTextInput />
+            <Text style={styles.description}>
+              I hereby agree to the T&C and Privacy Policy.
+            </Text>
+            <Text style={styles.description}>
+              Already a member? Login here.
+            </Text>
+            <AppButton title="Register" onPress={() => {}} />
           </View>
         </Swiper>
       </View>
