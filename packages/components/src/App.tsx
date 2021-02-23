@@ -6,15 +6,18 @@ import {
   StyleSheet,
   Text,
   View,
+  Image,
 } from 'react-native'
 
+import logo from '../assets/Illustration.png'
 import { AppHeader } from './AppHeader'
 import { HomeScreen } from './home/home'
+import { RouterComponent } from './home/router'
 
 export function App() {
   return (
     <>
-      <h1>Hello</h1>
+      {/* <RouterComponent /> */}
       <HomeScreen />
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
@@ -22,13 +25,24 @@ export function App() {
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}
         >
-          <AppHeader />
+          {/* <AppHeader /> */}
           {global.HermesInternal == null ? null : (
             <View style={styles.engine}>
               <Text style={styles.footer}>Engine: Hermes</Text>
             </View>
           )}
-          <View style={styles.body}>
+          {/* <View style={styles.body}>
+            <View>
+              <Image
+                style={{
+                  width: 100,
+                  height: 100,
+                  marginBottom: 15,
+                  marginRight: 10,
+                }}
+                source={logo}
+              />
+            </View>
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>
                 Code sharing using Monorepo
@@ -60,7 +74,7 @@ export function App() {
                 <Text style={styles.highlight}>.native</Text>, etc).
               </Text>
             </View>
-          </View>
+          </View> */}
         </ScrollView>
       </SafeAreaView>
     </>
