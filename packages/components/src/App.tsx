@@ -6,18 +6,13 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
 } from 'react-native'
-
-import logo from '../assets/Illustration.png'
-import { AppHeader } from './AppHeader'
+import { NavigationContainer } from '@react-navigation/native'
 import { HomeScreen } from './home/home'
-import { RouterComponent } from './home/router'
 
 export function App() {
   return (
-    <>
-      {/* <RouterComponent /> */}
+    <NavigationContainer>
       <HomeScreen />
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
@@ -25,59 +20,14 @@ export function App() {
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}
         >
-          {/* <AppHeader /> */}
           {global.HermesInternal == null ? null : (
             <View style={styles.engine}>
               <Text style={styles.footer}>Engine: Hermes</Text>
             </View>
           )}
-          {/* <View style={styles.body}>
-            <View>
-              <Image
-                style={{
-                  width: 100,
-                  height: 100,
-                  marginBottom: 15,
-                  marginRight: 10,
-                }}
-                source={logo}
-              />
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>
-                Code sharing using Monorepo
-              </Text>
-              <Text style={styles.sectionDescription}>
-                Edit{' '}
-                <Text style={styles.highlight}>
-                  packages/components/App.tsx
-                </Text>{' '}
-                to change this screen and then come back to see your edits (in
-                the phone or the browser).
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>
-                Web support via react-native-web
-              </Text>
-              <Text style={styles.sectionDescription}>
-                Run{' '}
-                <Text style={styles.highlight}>yarn workspace web start</Text>{' '}
-                to open this app in the browser.
-              </Text>
-              <Text style={styles.sectionDescription}>
-                It will share the same code from mobile, unless you create
-                platform-specific files using the{' '}
-                <Text style={styles.highlight}>.web.tsx</Text> extension (also
-                supports <Text style={styles.highlight}>.android</Text>,{' '}
-                <Text style={styles.highlight}>.ios</Text>,{' '}
-                <Text style={styles.highlight}>.native</Text>, etc).
-              </Text>
-            </View>
-          </View> */}
         </ScrollView>
       </SafeAreaView>
-    </>
+    </NavigationContainer>
   )
 }
 
