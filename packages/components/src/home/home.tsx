@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/triple-slash-reference
+/// <reference path='../types.d.ts'/>
 import React from 'react'
 import {
   Text,
@@ -39,12 +41,45 @@ const AppButton = (props) => {
   )
 }
 
+const stylesSlide = StyleSheet.create({
+  title: {
+    color: '#EF4339',
+    fontSize: 20,
+    lineHeight: 25,
+    fontWeight: 'bold',
+    marginTop: 81,
+    marginBottom: 20,
+  },
+  description: {
+    color: '#333333',
+    fontSize: 16,
+    lineHeight: 18,
+    fontWeight: 'normal',
+    textAlign: 'center',
+  },
+  descriptionBottom: {
+    color: '#333333',
+    fontSize: 16,
+    lineHeight: 18,
+    fontWeight: 'normal',
+    textAlign: 'center',
+    marginBottom: 80,
+  },
+})
+
 const styles = StyleSheet.create({
   title: {
     color: '#EF4339',
     fontSize: 20,
     lineHeight: 25,
     fontWeight: 'bold',
+  },
+  slideTitle1: {
+    color: '#EF4339',
+    fontSize: 20,
+    lineHeight: 25,
+    fontWeight: 'bold',
+    marginTop: 81,
     marginBottom: 20,
   },
   description: {
@@ -57,17 +92,21 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 50,
   },
+  imageWrapper: {
+    width: 249,
+    height: 211,
+  },
   slidePhoto1: {
-    width: 207.63,
-    height: 210.57,
+    width: 207,
+    height: 210,
   },
   slidePhoto2: {
-    width: 248.08,
-    height: 211.42,
+    width: 248,
+    height: 211,
   },
   slidePhoto3: {
     width: 249,
-    height: 109.29,
+    height: 109,
   },
   logo: {
     width: 66,
@@ -173,12 +212,18 @@ export function HomeScreen() {
               justifyContent: 'center',
             }}
           >
-            <Image style={styles.slidePhoto1} source={slidePhoto1} />
-            <Text style={styles.title}>Search and save your preference</Text>
-            <Text style={styles.description}>
+            <View style={styles.imageWrapper}>
+              <Image style={styles.slidePhoto1} source={slidePhoto1} />
+            </View>
+            <Text style={stylesSlide.title}>
+              Search and save your preference
+            </Text>
+            <Text style={stylesSlide.description}>
               Browse best hotels from 40,000+
             </Text>
-            <Text>database that fits your unique needs</Text>
+            <Text style={stylesSlide.descriptionBottom}>
+              database that fits your unique needs
+            </Text>
             <AppButton title="Next" onPress={() => {}} />
           </View>
           <View
@@ -188,12 +233,14 @@ export function HomeScreen() {
               justifyContent: 'center',
             }}
           >
-            <Image style={styles.slidePhoto2} source={slidePhoto2} />
-            <Text style={styles.title}>Find the best deals</Text>
-            <Text style={styles.description}>
+            <View style={styles.imageWrapper}>
+              <Image style={styles.slidePhoto2} source={slidePhoto2} />
+            </View>
+            <Text style={stylesSlide.title}>Find the best deals</Text>
+            <Text style={stylesSlide.description}>
               Find the best deals from any season and
             </Text>
-            <Text>book from a curated list</Text>
+            <Text style={stylesSlide.descriptionBottom}>book from a curated list</Text>
             <AppButton title="Next" onPress={() => {}} />
           </View>
           <View
@@ -203,12 +250,16 @@ export function HomeScreen() {
               justifyContent: 'center',
             }}
           >
-            <Image style={styles.slidePhoto3} source={slidePhoto3} />
-            <Text style={styles.title}>Book and enjoy your stay</Text>
-            <Text style={styles.description}>
+            <View style={styles.imageWrapper}>
+              <Image style={styles.slidePhoto3} source={slidePhoto3} />
+            </View>
+            <Text style={stylesSlide.title}>Book and enjoy your stay</Text>
+            <Text style={stylesSlide.description}>
               Select the hotel and date as per your
             </Text>
-            <Text>preference to book and have a pleasant stay</Text>
+            <Text style={stylesSlide.descriptionBottom}>
+              preference to book and have a pleasant stay
+            </Text>
             <AppButton title="Get Started" onPress={() => {}} />
           </View>
           <View
