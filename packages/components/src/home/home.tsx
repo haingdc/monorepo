@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/triple-slash-reference
 /// <reference path='../types.d.ts'/>
-import React from 'react'
+import React, { useRef } from 'react'
 import {
   Text,
   TextInput,
@@ -158,10 +158,17 @@ const UselessTextInput = () => {
 }
 
 export function HomeScreen() {
+  const swiperRef = useRef<Swiper>(null)
+  function next() {
+    if (swiperRef) {
+      swiperRef.current?.goToNext()
+    }
+  }
   return (
     <View nativeID="todo" style={{ flex: 1 }}>
       <View style={{ flex: 1 }}>
         <Swiper
+          ref={swiperRef}
           from={0}
           minDistanceForAction={0.1}
           controlsProps={{
@@ -224,7 +231,7 @@ export function HomeScreen() {
             <Text style={stylesSlide.descriptionBottom}>
               database that fits your unique needs
             </Text>
-            <AppButton title="Next" onPress={() => {}} />
+            <AppButton title="Next" onPress={next} />
           </View>
           <View
             style={{
@@ -240,8 +247,10 @@ export function HomeScreen() {
             <Text style={stylesSlide.description}>
               Find the best deals from any season and
             </Text>
-            <Text style={stylesSlide.descriptionBottom}>book from a curated list</Text>
-            <AppButton title="Next" onPress={() => {}} />
+            <Text style={stylesSlide.descriptionBottom}>
+              book from a curated list
+            </Text>
+            <AppButton title="Next" onPress={next} />
           </View>
           <View
             style={{
