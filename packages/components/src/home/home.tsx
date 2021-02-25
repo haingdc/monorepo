@@ -1,14 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/triple-slash-reference
 /// <reference path='../types.d.ts'/>
 import React, { useRef } from 'react'
-import {
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-  Image,
-  StyleSheet,
-} from 'react-native'
+import { Text, TouchableOpacity, View, Image, StyleSheet } from 'react-native'
 import Swiper from 'react-native-web-swiper'
 import slidePhoto1 from '../../assets/slidePhoto1.png'
 import slidePhoto2 from '../../assets/slidePhoto2.png'
@@ -32,7 +25,7 @@ const buttonStyles = StyleSheet.create({
   },
 })
 
-const AppButton = (props) => {
+export function AppButton(props) {
   const { title, onPress } = props
   return (
     <TouchableOpacity onPress={onPress} style={buttonStyles.appButtonContainer}>
@@ -146,18 +139,7 @@ class DotComponent extends React.Component {
   }
 }
 
-const UselessTextInput = () => {
-  const [value, onChangeText] = React.useState('Useless Placeholder')
-  return (
-    <TextInput
-      style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-      onChangeText={(text) => onChangeText(text)}
-      value={value}
-    />
-  )
-}
-
-export function HomeScreen() {
+export function HomeScreen({ navigation }) {
   const swiperRef = useRef<Swiper>(null)
   function next() {
     if (swiperRef) {
@@ -269,25 +251,10 @@ export function HomeScreen() {
             <Text style={stylesSlide.descriptionBottom}>
               preference to book and have a pleasant stay
             </Text>
-            <AppButton title="Get Started" onPress={() => {}} />
-          </View>
-          <View
-            style={{
-              flex: 1,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <UselessTextInput />
-            <UselessTextInput />
-            <UselessTextInput />
-            <Text style={styles.description}>
-              I hereby agree to the T&C and Privacy Policy.
-            </Text>
-            <Text style={styles.description}>
-              Already a member? Login here.
-            </Text>
-            <AppButton title="Register" onPress={() => {}} />
+            <AppButton
+              title="Get Started"
+              onPress={() => navigation.navigate('Details')}
+            />
           </View>
         </Swiper>
       </View>
