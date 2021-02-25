@@ -62,7 +62,7 @@ function UselessTextInput(props: {
         <Image source={avatar} style={imageStyle} />
       </View>
       <TextInput
-        style={{ height: 40, borderColor: 'red', borderWidth: 0 }}
+        style={{ flex: 1, height: 40, borderWidth: 0 }}
         onChangeText={(text) => onChangeText(text)}
         value={value}
       />
@@ -104,5 +104,17 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     flexDirection: 'row',
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(112, 112, 112, 0.5)',
+    borderStyle: 'solid',
+    shadowColor: 'rgba(56,56,56,0.75)',
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.14,
+    shadowRadius: 6.27,
+    elevation: 10,
+    borderRadius: 4,
   },
 })
