@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   View,
   Text,
@@ -14,6 +14,9 @@ import mail from '../../assets/mail.png'
 import lock from '../../assets/lock.png'
 
 export function SignUp() {
+  const [account, setAccount] = useState('Kiran')
+  const [password, setPassword] = useState('canden')
+  const [address, setAddress] = useState('kiran123@gmail.com')
   return (
     <View
       style={{
@@ -24,19 +27,28 @@ export function SignUp() {
     >
       <Image style={styles.slidePhoto1} source={authenPic} />
       <View style={styles.wrapper}>
-        <UselessTextInput
+        <InputApp
           avatar={human}
+          type="username"
           style={styles.intput}
           imageStyle={{ width: 15.83, height: 16.22 }}
+          value={account}
+          onChangeText={setAccount}
         />
-        <UselessTextInput
+        <InputApp
           avatar={mail}
+          type="emailAddress"
           style={styles.intput}
+          value={address}
+          onChangeText={setAddress}
           imageStyle={{ width: 17.69, height: 12.08 }}
         />
-        <UselessTextInput
+        <InputApp
+          type="password"
           avatar={lock}
           style={styles.intput}
+          value={password}
+          onChangeText={setPassword}
           imageStyle={{ width: 13.43, height: 18.77 }}
         />
         <Text style={styles.description}>
@@ -54,22 +66,26 @@ export function SignUp() {
   )
 }
 
-function UselessTextInput(props: {
+function InputApp(props: {
   style: Record<string, unknown>
   avatar: ImageSourcePropType
   imageStyle: { width: number; height: number }
+  value: string
+  type: 'password' | 'username' | 'emailAddress'
+  onChangeText: ((text: string) => void) | undefined
 }) {
-  const { style, avatar, imageStyle } = props
-  const [value, onChangeText] = React.useState('Useless Placeholder')
+  const { style, avatar, type, imageStyle, value, onChangeText } = props
   return (
     <View style={style}>
       <View style={{ padding: 17 }}>
         <Image source={avatar} style={imageStyle} />
       </View>
       <TextInput
-        style={{ flex: 1, height: 40, borderWidth: 0 }}
-        onChangeText={(text) => onChangeText(text)}
         value={value}
+        textContentType={type}
+        onChangeText={onChangeText}
+        secureTextEntry={type === 'password'}
+        style={{ flex: 1, height: 40, borderWidth: 0 }}
       />
     </View>
   )
