@@ -40,9 +40,14 @@ export function SignUp() {
           imageStyle={{ width: 13.43, height: 18.77 }}
         />
         <Text style={styles.description}>
-          I hereby agree to the T&C and Privacy Policy.
+          I hereby agree to the
+          <Text style={styles.descriptionBold}> T&C and Privacy Policy.</Text>
         </Text>
-        <Text style={styles.description}>Already a member? Login here.</Text>
+        <Text style={styles.description2}>
+          Already a member?
+          <Text style={styles.link}> Login </Text>
+          here.
+        </Text>
       </View>
       <AppButton title="Register" onPress={() => {}} />
     </View>
@@ -90,10 +95,27 @@ const styles = StyleSheet.create({
   },
   description: {
     color: '#333333',
-    fontSize: 16,
-    lineHeight: 18,
+    fontSize: 14,
+    lineHeight: 17,
     fontWeight: 'normal',
     textAlign: 'center',
+    marginBottom: 23,
+  },
+  description2: {
+    color: '#333333',
+    fontSize: 14,
+    lineHeight: 17,
+    fontWeight: 'normal',
+    textAlign: 'center',
+    marginBottom: 41,
+  },
+  descriptionBold: {
+    fontWeight: '900',
+    textDecorationLine: 'underline',
+  },
+  link: {
+    color: '#1D3AF2',
+    textDecorationLine: 'underline',
   },
   slidePhoto1: {
     width: 219,
