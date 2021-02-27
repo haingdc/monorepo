@@ -64,10 +64,12 @@ export function SignUp(props) {
             }}
             onClick={toggleAccept}
           />
-          <Text style={styles.description}>
-            I hereby agree to the
-            <Text style={styles.descriptionBold}> T&C and Privacy Policy.</Text>
-          </Text>
+          <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+            <Text style={styles.description}>
+              I hereby agree to the
+              <Text style={styles.descriptionBold}> T&C and Privacy Policy.</Text>
+            </Text>
+          </View>
         </View>
         <Text style={styles.description2}>
           Already a member?
@@ -128,9 +130,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 17,
     fontWeight: 'normal',
-    textAlign: 'center',
-    display: 'flex',
-    alignItems: 'center',
+    // textAlign: 'center',
+    // display: 'flex',
+    // flexDirection: 'row',
+    // alignItems: 'center',
   },
   description2: {
     color: '#333333',
