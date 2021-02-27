@@ -7,16 +7,20 @@ import {
   Image,
   ImageSourcePropType,
 } from 'react-native'
+import * as R from 'ramda'
 import { AppButton } from '../home/home'
 import authenPic from '../../assets/authenPic.png'
 import human from '../../assets/human.png'
 import mail from '../../assets/mail.png'
 import lock from '../../assets/lock.png'
+import RadioButton from '../components/input-radio'
+import useToggle from '../hooks/useToggle'
 
 export function SignUp() {
-  const [account, setAccount] = useState('Kiran')
-  const [password, setPassword] = useState('canden')
-  const [address, setAddress] = useState('kiran123@gmail.com')
+  const [ account , setAccount ] = useState('Kiran')
+  const [ password, setPassword] = useState('canden')
+  const [ address , setAddress ] = useState('kiran123@gmail.com')
+  const [ accept  , toggleAccept  ] = useToggle(false)
   return (
     <View
       style={{
@@ -51,10 +55,20 @@ export function SignUp() {
           onChangeText={setPassword}
           imageStyle={{ width: 13.43, height: 18.77 }}
         />
-        <Text style={styles.description}>
-          I hereby agree to the
-          <Text style={styles.descriptionBold}> T&C and Privacy Policy.</Text>
-        </Text>
+        <View style={styles.ratioWrapper}>
+          <RadioButton
+            button={{
+              color: '#EE5D62',
+              size: 20,
+              selected: accept,
+            }}
+            onClick={toggleAccept}
+          />
+          <Text style={styles.description}>
+            I hereby agree to the
+            <Text style={styles.descriptionBold}> T&C and Privacy Policy.</Text>
+          </Text>
+        </View>
         <Text style={styles.description2}>
           Already a member?
           <Text style={styles.link}> Login </Text>
@@ -115,7 +129,8 @@ const styles = StyleSheet.create({
     lineHeight: 17,
     fontWeight: 'normal',
     textAlign: 'center',
-    marginBottom: 23,
+    display: 'flex',
+    alignItems: 'center',
   },
   description2: {
     color: '#333333',
@@ -154,5 +169,9 @@ const styles = StyleSheet.create({
     shadowRadius: 6.27,
     elevation: 10,
     borderRadius: 4,
+  },
+  ratioWrapper: {
+    flexDirection: 'row',
+    marginBottom: 23,
   },
 })
