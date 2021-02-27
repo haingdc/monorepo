@@ -24,6 +24,7 @@ export function SignIn({ navigation }) {
       }}
     >
       <Image style={styles.slidePhoto1} source={authenPic} />
+      <View style={{ height: 95 }} />
       <View style={styles.wrapper}>
         <InputApp
           avatar={mail}

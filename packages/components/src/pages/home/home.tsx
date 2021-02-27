@@ -132,7 +132,6 @@ class DotComponent extends React.Component {
     // return <Text onPress={onPress}>{index + 1}</Text>
     return (
       <View
-        nativeID="todo-silly"
         style={[dotStyles.dot, isActive ? dotStyles.activeDot : {}]}
       />
     )
