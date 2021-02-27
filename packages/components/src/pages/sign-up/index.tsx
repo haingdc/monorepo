@@ -7,16 +7,16 @@ import {
   Image,
   ImageSourcePropType,
 } from 'react-native'
-import * as R from 'ramda'
 import { AppButton } from '../home/home'
-import authenPic from '../../assets/authenPic.png'
-import human from '../../assets/human.png'
-import mail from '../../assets/mail.png'
-import lock from '../../assets/lock.png'
-import RadioButton from '../components/input-radio'
-import useToggle from '../hooks/useToggle'
+import authenPic from '../../../assets/authenPic.png'
+import human from '../../../assets/human.png'
+import mail from '../../../assets/mail.png'
+import lock from '../../../assets/lock.png'
+import RadioButton from '../../components/input-radio'
+import useToggle from '../../hooks/useToggle'
 
-export function SignUp() {
+export function SignUp(props) {
+  const { navigation } = props
   const [ account , setAccount ] = useState('Kiran')
   const [ password, setPassword] = useState('canden')
   const [ address , setAddress ] = useState('kiran123@gmail.com')
@@ -71,7 +71,7 @@ export function SignUp() {
         </View>
         <Text style={styles.description2}>
           Already a member?
-          <Text style={styles.link}> Login </Text>
+          <Text style={styles.link} onPress={() => navigation.navigate('SignIn')}> Login </Text>
           here.
         </Text>
       </View>
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     color: '#333333',
     fontSize: 14,
     lineHeight: 17,
-    fontWeight: 'normal',
+    fontWeight: '300',
     textAlign: 'center',
     marginBottom: 41,
   },
@@ -147,6 +147,7 @@ const styles = StyleSheet.create({
   link: {
     color: '#1D3AF2',
     textDecorationLine: 'underline',
+    fontWeight: 'normal',
   },
   slidePhoto1: {
     width: 219,

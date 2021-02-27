@@ -1,11 +1,11 @@
 // eslint-disable-next-line @typescript-eslint/triple-slash-reference
-/// <reference path='../types.d.ts'/>
+/// <reference path='../../types.d.ts'/>
 import React, { useRef } from 'react'
 import { Text, TouchableOpacity, View, Image, StyleSheet } from 'react-native'
 import Swiper from 'react-native-web-swiper'
-import slidePhoto1 from '../../assets/slidePhoto1.png'
-import slidePhoto2 from '../../assets/slidePhoto2.png'
-import slidePhoto3 from '../../assets/slidePhoto3.png'
+import slidePhoto1 from '../../../assets/slidePhoto1.png'
+import slidePhoto2 from '../../../assets/slidePhoto2.png'
+import slidePhoto3 from '../../../assets/slidePhoto3.png'
 
 const buttonStyles = StyleSheet.create({
   appButtonContainer: {
@@ -139,7 +139,7 @@ class DotComponent extends React.Component {
   }
 }
 
-export function HomeScreen({ navigation }) {
+export function Home({ navigation }) {
   const swiperRef = useRef<Swiper>(null)
   function next() {
     if (swiperRef) {
@@ -253,7 +253,7 @@ export function HomeScreen({ navigation }) {
             </Text>
             <AppButton
               title="Get Started"
-              onPress={() => navigation.navigate('Details')}
+              onPress={() => navigation.navigate('SignUp')}
             />
           </View>
         </Swiper>
