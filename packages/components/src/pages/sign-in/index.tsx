@@ -49,7 +49,7 @@ export function SignIn({ navigation }) {
           here.
         </Text>
       </View>
-      <AppButton title="Login" onPress={() => {}} />
+      <AppButton title="Login" onPress={() => navigation.navigate('Contact')} />
     </View>
   )
 }
