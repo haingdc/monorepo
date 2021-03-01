@@ -11,8 +11,11 @@ import { AppButton } from '../welcome/welcome'
 import authenPic from '../../../assets/authenPic.png'
 import mail from '../../../assets/mail.png'
 import lock from '../../../assets/lock.png'
+import { AuthContext } from '../../contexts/auth'
 
 export function SignIn({ navigation }) {
+  const { signIn } = React.useContext(AuthContext);
+
   const [ password, setPassword] = useState('canden')
   const [ address , setAddress ] = useState('kiran123@gmail.com')
   return (
@@ -49,7 +52,7 @@ export function SignIn({ navigation }) {
           here.
         </Text>
       </View>
-      <AppButton title="Login" onPress={() => navigation.navigate('Contact')} />
+      <AppButton title="Login" onPress={() => signIn({ address, password })} />
     </View>
   )
 }
