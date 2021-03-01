@@ -6,7 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import AsyncStorage from '@react-native-community/async-storage'
-import { Welcome } from './pages/welcome/welcome'
+import { Welcome } from './pages/welcome'
 import { SignUp } from './pages/sign-up'
 import { SignIn } from './pages/sign-in'
 import { AuthContext } from './contexts/auth'
@@ -232,6 +232,7 @@ export function App({ navigation }) {
           ) : state.userToken == null ? (
             // No token found, user isn't signed in
             [
+              <Stack.Screen name="Welcomd" component={Welcome} key="Welcome" />,
               <Stack.Screen
                 name="SignIn"
                 component={SignIn}
@@ -240,8 +241,9 @@ export function App({ navigation }) {
               // When logging out, a pop animation feels intuitive
                   animationTypeForReplace: state.isSignout ? 'pop' : 'push',
                 }}
+                key="SignIn"
               />,
-              <Stack.Screen name="SignUp" component={SignUp}/>
+              <Stack.Screen name="SignUp" component={SignUp} key="SignUp" />
             ]
           ) : (
             // User is signed in
