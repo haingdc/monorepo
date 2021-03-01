@@ -7,7 +7,7 @@ import {
   Image,
   ImageSourcePropType,
 } from 'react-native'
-import { AppButton } from '../home/home'
+import { AppButton } from '../welcome/welcome'
 import authenPic from '../../../assets/authenPic.png'
 import human from '../../../assets/human.png'
 import mail from '../../../assets/mail.png'

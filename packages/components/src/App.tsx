@@ -1,16 +1,18 @@
 import React from 'react'
-import { StatusBar } from 'react-native'
+import { StatusBar, Text } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import { Home } from './pages/home/home'
+import { Welcome } from './pages/welcome/welcome'
 import { SignUp } from './pages/sign-up'
 import { SignIn } from './pages/sign-in'
 
 const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator()
+
+
 
 function BottomTabNavigator() {
   return (
@@ -32,7 +34,7 @@ function BottomTabNavigator() {
         },
       })}
     >
-      <Tab.Screen name="Home" component={AuthenStack} options={{ tabBarVisible: false }} />
+      <Tab.Screen name="Home" component={AuthenStack} /* options={{ tabBarVisible: false }} */ />
       <Tab.Screen name="Contact" component={ContactStack} />
     </Tab.Navigator>
   );
@@ -41,17 +43,21 @@ function BottomTabNavigator() {
 function AuthenStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Home"   component={Home} />
+      <Stack.Screen name="Home"   component={Welcome} />
       <Stack.Screen name="SignIn" component={SignIn} />
       <Stack.Screen name="SignUp" component={SignUp} />
     </Stack.Navigator>
   )
 }
 
+function Contact() {
+  return <Text>Contact</Text>
+}
+
 function ContactStack() {
   return (
     <Stack.Navigator screenOptions={{}}>
-      <Stack.Screen name="Contact" component={Home} />
+      <Stack.Screen name="Contact" component={Contact} />
     </Stack.Navigator>
   );
 }
@@ -60,7 +66,7 @@ export function App() {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <StatusBar barStyle="dark-content" />
+        {/* <StatusBar barStyle="dark-content" /> */}
         <BottomTabNavigator />
       </NavigationContainer>
     </SafeAreaProvider>

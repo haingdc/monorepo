@@ -138,7 +138,7 @@ class DotComponent extends React.Component {
   }
 }
 
-export function Home({ navigation }) {
+export function Welcome({ navigation }) {
   const swiperRef = useRef<Swiper>(null)
   function next() {
     if (swiperRef) {
