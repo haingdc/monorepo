@@ -14,13 +14,15 @@ import mail from '../../../assets/mail.png'
 import lock from '../../../assets/lock.png'
 import RadioButton from '../../components/input-radio'
 import useToggle from '../../hooks/useToggle'
+import { AuthContext } from '../../contexts/auth'
 
 export function SignUp(props) {
-  const { navigation } = props
-  const [ account , setAccount ] = useState('Kiran')
-  const [ password, setPassword] = useState('canden')
-  const [ address , setAddress ] = useState('kiran123@gmail.com')
-  const [ accept  , toggleAccept  ] = useToggle(false)
+  const { signUp     } = React.useContext(AuthContext);
+  const { navigation } = props;
+  const [account , setAccount ] = useState('Kiran');
+  const [password, setPassword] = useState('canden');
+  const [address , setAddress ] = useState('kiran123@gmail.com');
+  const [accept , toggleAccept] = useToggle(false);
   return (
     <View
       style={{
@@ -77,7 +79,7 @@ export function SignUp(props) {
           here.
         </Text>
       </View>
-      <AppButton title="Register" onPress={() => {}} />
+      <AppButton title="Register" onPress={() => signUp({ address, password, account })} />
     </View>
   )
 }

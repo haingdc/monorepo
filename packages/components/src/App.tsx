@@ -9,7 +9,7 @@ import AsyncStorage from '@react-native-community/async-storage'
 import { Welcome } from './pages/welcome'
 import { SignUp } from './pages/sign-up'
 import { SignIn } from './pages/sign-in'
-import { AuthContext } from './contexts/auth'
+import { AuthContext, AuthTypes } from './contexts/auth'
 import { Explore } from './pages/explore'
 import { SplashScreen } from './pages/loading'
 
@@ -47,37 +47,58 @@ function Contact() {
 
 const Stack = createStackNavigator();
 
+interface AppState {
+  isLoading: boolean;
+  isSignout: boolean;
+  isSignup : boolean;
+  userToken?: string;
+}
+
+interface AppAction {
+  type  : string;
+  token?: string;
+}
+
 export function App({ navigation }) {
-  const [state, dispatch] = React.useReducer(
+  const initialState = {
+    isLoading: true,
+    isSignout: false,
+    isSignup : false,
+    userToken: '',
+  };
+  const [state, dispatch] = React.useReducer<(prevState: AppState, action: AppAction) => AppState>(
     (prevState, action) => {
       switch (action.type) {
-        case 'RESTORE_TOKEN':
+        case AuthTypes.RESTORE_TOKEN:
           return {
             ...prevState,
             userToken: action.token,
             isLoading: false,
           };
-        case 'SIGN_IN':
+        case AuthTypes.SIGN_IN:
           return {
             ...prevState,
             isSignout: false,
             userToken: action.token,
           };
-        case 'SIGN_OUT':
+        case AuthTypes.SIGN_OUT:
           return {
             ...prevState,
             isSignout: true,
-            userToken: null,
+            userToken: undefined,
+          };
+        case AuthTypes.SIGN_UP:
+          return {
+            ...prevState,
+            isSignout: false,
+            userToken: undefined,
+            isSignup:  true,
           };
         default:
           return prevState;
       }
     },
-    {
-      isLoading: true,
-      isSignout: false,
-      userToken: null,
-    }
+    initialState
   );
 
   React.useEffect(() => {
@@ -95,30 +116,31 @@ export function App({ navigation }) {
 
       // This will switch to the App screen or Auth screen and this loading
       // screen will be unmounted and thrown away.
-      dispatch({ type: 'RESTORE_TOKEN', token: userToken });
+      dispatch({ type: AuthTypes.RESTORE_TOKEN, token: userToken });
     };
-
     bootstrapAsync();
   }, []);
 
   const authContext = React.useMemo(
     () => ({
-      signIn: async data => {
+      signIn: async (_data: { address: string, password: string }) => {
         // In a production app, we need to send some data (usually username, password) to server and get a token
         // We will also need to handle errors if sign in failed
         // After getting token, we need to persist the token using `AsyncStorage`
         // In the example, we'll use a dummy token
 
-        dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
+        dispatch({ type: AuthTypes.SIGN_IN, token: 'dummy-auth-token' });
       },
-      signOut: () => dispatch({ type: 'SIGN_OUT' }),
-      signUp: async data => {
-        // In a production app, we need to send user data to server and get a token
-        // We will also need to handle errors if sign up failed
-        // After getting token, we need to persist the token using `AsyncStorage`
-        // In the example, we'll use a dummy token
-
-        dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
+      signOut: () => {
+        AsyncStorage.removeItem('userToken', () => {
+          dispatch({ type: AuthTypes.SIGN_OUT });
+        });
+      },
+      signUp: async (data: {address: string, password: string, account: string}) => {
+        const dummyToken = 'dummy-auth-token';
+        AsyncStorage.setItem('userToken', dummyToken, () => {
+          dispatch({ type: AuthTypes.SIGN_UP, token: dummyToken });
+        })
       },
     }),
     []
@@ -132,19 +154,16 @@ export function App({ navigation }) {
             {state.isLoading ? (
               // We haven't finished checking for the token yet
               <Stack.Screen name="Splash" component={SplashScreen} />
-            ) : state.userToken == null ? (
+            ) : !state.userToken ? (
               // No token found, user isn't signed in
               [
                 <Stack.Screen name="Welcome" component={Welcome} key="Welcome" />,
-                <Stack.Screen
-                  name="SignIn"
-                  component={SignIn}
+                <Stack.Screen name="SignIn"  component={SignIn}  key="SignIn"
                   options={{
                     title: 'Sign in',
                 // When logging out, a pop animation feels intuitive
                     animationTypeForReplace: state.isSignout ? 'pop' : 'push',
                   }}
-                  key="SignIn"
                 />,
                 <Stack.Screen name="SignUp" component={SignUp} key="SignUp" />
               ]
