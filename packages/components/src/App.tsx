@@ -134,7 +134,7 @@ export function App({ navigation }) {
               ]
             ) : (
               // User is signed in
-              <Stack.Screen name="Home" component={BottomTabs} />
+              <Stack.Screen name="Explore" component={BottomTabs} />
             )}
 
           </Stack.Navigator>

@@ -1,8 +1,21 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import { Image } from 'react-native';
 import { Explore } from '../../pages/explore';
-import { Contact } from "../../pages/contact";
+import { Wishlist } from "../../pages/wishlist";
+import { Profile } from '../../pages/profile';
+import circle from '../../../assets/circle.png'
+import circleInactive from '../../../assets/circle-inactive.png'
+import bookmark from '../../../assets/bookmark.png'
+import bookmarkInactive from '../../../assets/bookmark-inactive.png'
+import human from '../../../assets/human.png'
+import humanInactive from '../../../assets/human-inactive.png'
+
+enum TABS {
+  EXPLORE  = 'EXPLORE',
+  WISHLIST = 'WISHLIST',
+  PROFILE  = 'PROFILE',
+}
 
 const Tab = createBottomTabNavigator();
 export function BottomTabs() {
@@ -10,23 +23,18 @@ export function BottomTabs() {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
-
-          if (route.name === 'Home') {
-            iconName = focused
-              ? 'ios-information-circle'
-              : 'ios-information-circle-outline';
-          } else if (route.name === 'Settings') {
-            iconName = focused ? 'ios-list-box' : 'ios-list';
-          }
-
-          // You can return any component that you like here!
-          return <Ionicons name={iconName} size={size} color={color} />;
+          const tabDictionary = {
+            [TABS.EXPLORE ] : [circle  , circleInactive  ],
+            [TABS.WISHLIST] : [bookmark, bookmarkInactive],
+            [TABS.PROFILE ] : [human   , humanInactive   ],
+          };
+          return <Image source={tabDictionary[route.name][focused ? 0 : 1]} />;
         },
       })}
     >
-      <Tab.Screen name="Explore" component={Explore} /* options={{ tabBarVisible: false }} */ />
-      <Tab.Screen name="Contact" component={Contact} />
+      <Tab.Screen name={TABS.EXPLORE } component={Explore } />
+      <Tab.Screen name={TABS.WISHLIST} component={Wishlist} />
+      <Tab.Screen name={TABS.PROFILE } component={Profile } />
     </Tab.Navigator>
   );
 }
