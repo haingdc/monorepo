@@ -1,49 +1,14 @@
+import AsyncStorage from '@react-native-community/async-storage'
 import React from 'react'
-import { Text } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
-import Ionicons from 'react-native-vector-icons/Ionicons'
-import AsyncStorage from '@react-native-community/async-storage'
 import { Welcome } from './pages/welcome'
 import { SignUp } from './pages/sign-up'
 import { SignIn } from './pages/sign-in'
 import { AuthContext, AuthTypes } from './contexts/auth'
-import { Explore } from './pages/explore'
 import { SplashScreen } from './pages/loading'
-
-const Tab = createBottomTabNavigator()
-
-function BottomTabNavigator() {
-  return (
-    <Tab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
-
-          if (route.name === 'Home') {
-            iconName = focused
-              ? 'ios-information-circle'
-              : 'ios-information-circle-outline';
-          } else if (route.name === 'Settings') {
-            iconName = focused ? 'ios-list-box' : 'ios-list';
-          }
-
-          // You can return any component that you like here!
-          return <Ionicons name={iconName} size={size} color={color} />;
-        },
-      })}
-    >
-      <Tab.Screen name="Explore" component={Explore} /* options={{ tabBarVisible: false }} */ />
-      <Tab.Screen name="Contact" component={Contact} />
-    </Tab.Navigator>
-  );
-}
-
-function Contact() {
-  return <Text>Contact</Text>
-}
+import { BottomTabs } from './containers/bottom-tabs'
 
 const Stack = createStackNavigator();
 
@@ -123,7 +88,7 @@ export function App({ navigation }) {
 
   const authContext = React.useMemo(
     () => ({
-      signIn: async (_data: { address: string, password: string }) => {
+      signIn: async (data: { address: string, password: string }) => {
         // In a production app, we need to send some data (usually username, password) to server and get a token
         // We will also need to handle errors if sign in failed
         // After getting token, we need to persist the token using `AsyncStorage`
@@ -169,7 +134,7 @@ export function App({ navigation }) {
               ]
             ) : (
               // User is signed in
-              <Stack.Screen name="Home" component={BottomTabNavigator} />
+              <Stack.Screen name="Home" component={BottomTabs} />
             )}
 
           </Stack.Navigator>
