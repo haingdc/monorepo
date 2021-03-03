@@ -1,16 +1,35 @@
 import React, { useState, useContext } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
+import Carousel from 'react-native-snap-carousel';
 import { InputApp } from '../sign-in';
-import location from '../../../assets/place.png'
-import group from '../../../assets/group.png'
-import calendar from '../../../assets/calendar.png'
+import location from '../../../assets/place.png';
+import group from '../../../assets/group.png';
+import calendar from '../../../assets/calendar.png';
+import { HotelSmallCard } from '../../components/card';
+import cardPic1 from '../../../assets/card_s_taj-vista.png';
+import cardPic2 from '../../../assets/card_s_sheraton.png';
+
+const list = [
+  { title: 'Sheraton Grand', source: cardPic1, price: '5999' },
+  { title: 'Taj Vista'     , source: cardPic2, price: '6999' },
+  { title: 'Taj Vista'     , source: cardPic2, price: '6999' },
+];
+
+const itemWidth = 200;
 
 export function Explore() {
-  const [place  , setPlace  ] = useState('Bangalore')
-  const [goStart, setGoStart] = useState('27 May, 2020')
-  const [goEnd  , setGoEnd  ] = useState('30 May, 2020')
-  const [members, setMembers] = useState('1 Adult')
+  const [place  , setPlace  ] = useState('Bangalore');
+  const [goStart, setGoStart] = useState('27 May, 2020');
+  const [goEnd  , setGoEnd  ] = useState('30 May, 2020');
+  const [members, setMembers] = useState('1 Adult');
 
+  function renderItem({item, index}) {
+    return (
+      <View style={styles.slide}>
+          <HotelSmallCard source={item.source} price={item.price}>{item.title}</HotelSmallCard>
+      </View>
+    );
+  }
   return (
     <View
       style={{
@@ -51,6 +70,15 @@ export function Explore() {
           onChangeText={setMembers}
           imageStyle={{ width: 13.43, height: 18.77 }}
       />
+      <View style={styles.slideWrapper}>
+        <Carousel
+          ref={c => {}}
+          data={list}
+          renderItem={renderItem}
+          sliderWidth={itemWidth * 3}
+          itemWidth={itemWidth}
+        />
+      </View>
     </View>
   );
 }
@@ -62,33 +90,10 @@ const styles = StyleSheet.create({
     lineHeight: 25,
     fontWeight: 'bold',
   },
-  slideTitle1: {
-    color: '#EF4339',
-    fontSize: 20,
-    lineHeight: 25,
-    fontWeight: 'bold',
-    marginTop: 81,
-    marginBottom: 20,
-  },
-  wrapper: {
-    marginTop: 30,
-  },
-  description: {
-    color: '#333333',
-    fontSize: 14,
-    lineHeight: 17,
-    fontWeight: '300',
-    textAlign: 'center',
-    marginBottom: 41,
-  },
   link: {
     color: '#1D3AF2',
     textDecorationLine: 'underline',
     fontWeight: 'normal',
-  },
-  slidePhoto1: {
-    width: 219,
-    height: 169,
   },
   intput: {
     width: 335,
@@ -108,29 +113,8 @@ const styles = StyleSheet.create({
     elevation: 10,
     borderRadius: 4,
   },
-  intput2: {
-    width: 335,
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: 'rgba(112, 112, 112, 0.5)',
-    borderStyle: 'solid',
-    shadowColor: 'rgba(56,56,56,0.75)',
-    shadowOffset: {
-      width: 0,
-      height: 5,
-    },
-    shadowOpacity: 0.14,
-    shadowRadius: 6.27,
-    elevation: 10,
-    borderRadius: 4,
-  },
-  forgot: {
-    fontSize: 12,
-    fontWeight: '300',
-    lineHeight: 15,
-    textAlign: 'right',
-    marginTop: 8,
-    marginBottom: 38,
+  slide: {},
+  slideWrapper: {
+    // backgroundColor: 'rgba(56,56,56,1)',
   },
 })
