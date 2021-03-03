@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import React, { useState, useLayoutEffect, useContext, useRef } from 'react';
+import { View, StyleSheet, Text, Dimensions } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import { InputApp } from '../sign-in';
 import location from '../../../assets/place.png';
@@ -15,8 +15,6 @@ const list = [
   { title: 'Taj Vista'     , source: cardPic2, price: '6999' },
 ];
 
-const itemWidth = 200;
-
 export function Explore() {
   const [place  , setPlace  ] = useState('Bangalore');
   const [goStart, setGoStart] = useState('27 May, 2020');
@@ -25,8 +23,10 @@ export function Explore() {
 
   function renderItem({item, index}) {
     return (
-      <View style={styles.slide}>
+      <View style={carouselStyles.slide}>
+        <View style={carouselStyles.slideInnerContainer}>
           <HotelSmallCard source={item.source} price={item.price}>{item.title}</HotelSmallCard>
+        </View>
       </View>
     );
   }
@@ -70,18 +70,48 @@ export function Explore() {
           onChangeText={setMembers}
           imageStyle={{ width: 13.43, height: 18.77 }}
       />
-      <View style={styles.slideWrapper}>
+      <View style={carouselStyles.slideWrapper}>
         <Carousel
-          ref={c => {}}
           data={list}
           renderItem={renderItem}
-          sliderWidth={itemWidth * 3}
+          sliderWidth={sliderWidth}
           itemWidth={itemWidth}
+          containerCustomStyle={carouselStyles.container}
+          contentContainerStyle={carouselStyles.content}
+          inactiveSlideOpacity={1}
+          inactiveSlideScale={1}
+          activeSlideAlignment="start"
+          removeClippedSubviews={false}
         />
       </View>
     </View>
   );
 }
+
+const horizontalMargin = 7;
+const slideWidth = 160;
+const itemHeight = 168;
+
+const sliderWidth = Dimensions.get('window').width;
+const itemWidth = slideWidth + horizontalMargin * 2;
+
+const carouselStyles = StyleSheet.create({
+  container: {},
+  content: {},
+  slide: {
+    paddingHorizontal: 0,
+    width: itemWidth,
+    height: itemHeight,
+  },
+  slideInnerContainer: {
+    width: slideWidth,
+    flex: 1,
+  },
+  slideWrapper: {
+    height: 168,
+    width: 335,
+  },
+});
 
 const styles = StyleSheet.create({
   title: {
@@ -112,9 +142,5 @@ const styles = StyleSheet.create({
     shadowRadius: 6.27,
     elevation: 10,
     borderRadius: 4,
-  },
-  slide: {},
-  slideWrapper: {
-    // backgroundColor: 'rgba(56,56,56,1)',
   },
 })

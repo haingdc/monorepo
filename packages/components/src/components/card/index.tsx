@@ -7,13 +7,25 @@ export function HotelSmallCard(props: HotelSmallCardPropType) {
   return (
     <Container>
       <Image style={styles.smallImage} source={source} />
-      <View>
-        <Text>{children}</Text>
+      <View style={hotelCardStyles.container}>
+        <Text style={hotelCardStyles.name}>{children}</Text>
         <Currency>{price}</Currency>
       </View>
     </Container>
   )
 }
+
+const hotelCardStyles = StyleSheet.create({
+  container: {
+    paddingTop: 15,
+    paddingRight: 15,
+    paddingBottom: 13,
+    paddingLeft: 15,
+  },
+  name: {
+    marginBottom: 6,
+  },
+});
 
 interface HotelSmallCardPropType extends PropsWithChildren<any>{
   source: ImageSourcePropType;
@@ -42,6 +54,15 @@ const styles = StyleSheet.create({
   container: {
     borderRadius: 4,
     overflow    : 'hidden',
+    backgroundColor: '#fff',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+    elevation: 3,
   },
   smallImage: {
     width : 160,
