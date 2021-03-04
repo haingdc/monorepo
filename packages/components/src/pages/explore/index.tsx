@@ -1,11 +1,13 @@
-import React, { useState, useLayoutEffect, useContext, useRef } from 'react';
-import { View, StyleSheet, Text, Dimensions } from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet, Dimensions, Image } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import { InputApp } from '../sign-in';
-import location from '../../../assets/place.png';
-import group from '../../../assets/group.png';
-import calendar from '../../../assets/calendar.png';
+import { Button, Button2 } from "../../components/button";
 import { HotelSmallCard } from '../../components/card';
+import calendar from '../../../assets/calendar.png';
+import drop     from '../../../assets/drop.png';
+import location from '../../../assets/place.png';
+import group    from '../../../assets/group.png';
 import cardPic1 from '../../../assets/card_s_taj-vista.png';
 import cardPic2 from '../../../assets/card_s_sheraton.png';
 
@@ -70,6 +72,12 @@ export function Explore() {
           onChangeText={setMembers}
           imageStyle={{ width: 13.43, height: 18.77 }}
       />
+      <View style={{ flexDirection: 'row', marginBottom: 30 }}>
+        <Button>Search</Button>
+        <Button2 style={{ width: 45, height: 40, marginLeft: 10 }}>
+          <Image source={drop} style={{ width: 15, height: 20 }} />
+        </Button2>
+      </View>
       <View style={carouselStyles.slideWrapper}>
         <Carousel
           data={list}

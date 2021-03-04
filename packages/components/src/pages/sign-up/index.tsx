@@ -6,15 +6,15 @@ import {
   TextInput,
   Image,
   ImageSourcePropType,
-} from 'react-native'
-import { AppButton } from '../welcome'
-import authenPic from '../../../assets/authenPic.png'
-import human from '../../../assets/human.png'
-import mail from '../../../assets/mail.png'
-import lock from '../../../assets/lock.png'
-import RadioButton from '../../components/input-radio'
-import useToggle from '../../hooks/useToggle'
-import { AuthContext } from '../../contexts/auth'
+} from 'react-native';
+import { Button      } from "../../components/button";
+import { AuthContext } from '../../contexts/auth';
+import   authenPic     from '../../../assets/authenPic.png';
+import   human         from '../../../assets/human.png';
+import   mail          from '../../../assets/mail.png';
+import   lock          from '../../../assets/lock.png';
+import   RadioButton   from '../../components/input-radio';
+import   useToggle     from '../../hooks/useToggle';
 
 export function SignUp(props) {
   const { signUp     } = React.useContext(AuthContext);
@@ -79,7 +79,7 @@ export function SignUp(props) {
           here.
         </Text>
       </View>
-      <AppButton title="Register" onPress={() => signUp({ address, password, account })} />
+      <Button onPress={() => signUp({ address, password, account })}>Register</Button>
     </View>
   )
 }
@@ -132,10 +132,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 17,
     fontWeight: 'normal',
-    // textAlign: 'center',
-    // display: 'flex',
-    // flexDirection: 'row',
-    // alignItems: 'center',
   },
   description2: {
     color: '#333333',

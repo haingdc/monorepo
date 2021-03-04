@@ -7,7 +7,7 @@ import {
   Image,
   ImageSourcePropType,
 } from 'react-native'
-import { AppButton } from '../welcome'
+import { Button } from "../../components/button"
 import authenPic from '../../../assets/authenPic.png'
 import mail from '../../../assets/mail.png'
 import lock from '../../../assets/lock.png'
@@ -52,7 +52,7 @@ export function SignIn({ navigation }) {
           here.
         </Text>
       </View>
-      <AppButton title="Login" onPress={() => signIn({ address, password })} />
+      <Button onPress={() => signIn({ address, password })}>Login</Button>
     </View>
   )
 }
