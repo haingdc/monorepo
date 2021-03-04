@@ -14,7 +14,8 @@
     "lint": "eslint .",
     "studio": "yarn workspace mobile studio",
     "test": "yarn workspaces run test",
-    "xcode": "yarn workspace mobile xcode"
+    "xcode": "yarn workspace mobile xcode",
+    "postinstall": "chmod 777 web-postinstall-fix.sh && ./web-postinstall-fix.sh"
   },
   "devDependencies": {
     "@react-native-community/eslint-config": "2.0.0",
