@@ -6,33 +6,7 @@ import Swiper from 'react-native-web-swiper'
 import slidePhoto1 from '../../../assets/slidePhoto1.png'
 import slidePhoto2 from '../../../assets/slidePhoto2.png'
 import slidePhoto3 from '../../../assets/slidePhoto3.png'
-
-const buttonStyles = StyleSheet.create({
-  appButtonContainer: {
-    elevation: 8,
-    backgroundColor: '#EF4339',
-    borderRadius: 4,
-    paddingVertical: 12,
-    paddingHorizontal: 12,
-    width: 280,
-  },
-  appButtonText: {
-    fontSize: 13,
-    color: '#fff',
-    fontWeight: 'bold',
-    alignSelf: 'center',
-    textTransform: 'capitalize',
-  },
-})
-
-export function AppButton(props) {
-  const { title, onPress } = props
-  return (
-    <TouchableOpacity onPress={onPress} style={buttonStyles.appButtonContainer}>
-      <Text style={buttonStyles.appButtonText}>{title}</Text>
-    </TouchableOpacity>
-  )
-}
+import { Button } from '../../components/button'
 
 const stylesSlide = StyleSheet.create({
   title: {
@@ -212,7 +186,7 @@ export function Welcome({ navigation }) {
             <Text style={stylesSlide.descriptionBottom}>
               database that fits your unique needs
             </Text>
-            <AppButton title="Next" onPress={next} />
+            <Button onPress={next}>Next</Button>
           </View>
           <View
             style={{
@@ -231,7 +205,7 @@ export function Welcome({ navigation }) {
             <Text style={stylesSlide.descriptionBottom}>
               book from a curated list
             </Text>
-            <AppButton title="Next" onPress={next} />
+            <Button onPress={next}>Next</Button>
           </View>
           <View
             style={{
@@ -250,10 +224,7 @@ export function Welcome({ navigation }) {
             <Text style={stylesSlide.descriptionBottom}>
               preference to book and have a pleasant stay
             </Text>
-            <AppButton
-              title="Get Started"
-              onPress={() => navigation.navigate('SignUp')}
-            />
+            <Button onPress={() => navigation.navigate('SignUp')}>Get Started</Button>
           </View>
         </Swiper>
       </View>
