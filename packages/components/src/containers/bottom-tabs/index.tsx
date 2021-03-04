@@ -22,7 +22,7 @@ export function BottomTabs() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
+        tabBarIcon: ({ focused/* , color, size */ }) => {
           const tabDictionary = {
             [TABS.EXPLORE ] : [circle  , circleInactive  ],
             [TABS.WISHLIST] : [bookmark, bookmarkInactive],

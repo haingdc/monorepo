@@ -3,6 +3,7 @@ import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
+import { View, Text } from 'react-native'
 import { Welcome } from './pages/welcome'
 import { SignUp } from './pages/sign-up'
 import { SignIn } from './pages/sign-in'
@@ -116,27 +117,36 @@ export function App({ navigation }) {
       <SafeAreaProvider>
         <NavigationContainer>
           <Stack.Navigator>
-            {state.isLoading ? (
+            {
+              state.isLoading
+
+                    ?
               // We haven't finished checking for the token yet
               <Stack.Screen name="Splash" component={SplashScreen} />
-            ) : !state.userToken ? (
+
+                    :
+
+              !state.userToken
+
+                    ?
+
               // No token found, user isn't signed in
               [
                 <Stack.Screen name="Welcome" component={Welcome} key="Welcome" />,
                 <Stack.Screen name="SignIn"  component={SignIn}  key="SignIn"
                   options={{
                     title: 'Sign in',
-                // When logging out, a pop animation feels intuitive
-                    animationTypeForReplace: state.isSignout ? 'pop' : 'push',
+                    animationTypeForReplace: state.isSignout ? 'pop' : 'push', // When logging out, a pop animation feels intuitive
                   }}
                 />,
                 <Stack.Screen name="SignUp" component={SignUp} key="SignUp" />
               ]
-            ) : (
+
+                   :
+
               // User is signed in
               <Stack.Screen name="Explore" component={BottomTabs} />
-            )}
-
+            }
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>
