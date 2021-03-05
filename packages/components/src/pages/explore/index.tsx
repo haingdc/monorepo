@@ -33,6 +33,7 @@ export function Explore() {
           alignItems: 'center',
           alignSelf: 'center',
           width: 375,
+          paddingBottom: 40,
         }}
       >
         <InputApp
@@ -73,19 +74,18 @@ export function Explore() {
             <Image source={drop} style={{ width: 15, height: 20 }} />
           </Button2>
         </View>
-        <ProductList style={{ width: '100%', height: 168 }} />
-        <ProductList style={{ width: '100%', marginVertical: 20, marginHorizontal: 20 }} />
+        <ProductList />
+        <ProductList style={{ marginVertical: 20, marginHorizontal: 20 }} />
       </View>
     </ScrollView>
   );
 }
 
-const horizontalMargin = 7;
-const slideWidth = 160;
-const itemHeight = 168;
-
-const sliderWidth = Dimensions.get('window').width;
-const itemWidth = slideWidth + horizontalMargin * 2;
+const horizontalMargin =   7;
+const slideWidth       = 160;
+const itemHeight       = 168;
+const itemWidth        = slideWidth + horizontalMargin * 2;
+const sliderWidth      = Dimensions.get('window').width;
 
 const carouselStyles = StyleSheet.create({
   container: {},
@@ -107,34 +107,34 @@ const carouselStyles = StyleSheet.create({
 
 const styles = StyleSheet.create({
   title: {
-    color: '#EF4339',
-    fontSize: 20,
-    lineHeight: 25,
+    color     : '#EF4339',
+    fontSize  : 20,
     fontWeight: 'bold',
+    lineHeight: 25,
   },
   link: {
-    color: '#1D3AF2',
+    color             : '#1D3AF2',
+    fontWeight        : 'normal',
     textDecorationLine: 'underline',
-    fontWeight: 'normal',
   },
   intput: {
     marginHorizontal: 20,
-    marginBottom: 20,
-    alignSelf: 'stretch',
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: 'rgba(112, 112, 112, 0.5)',
-    borderStyle: 'solid',
-    shadowColor: 'rgba(56,56,56,0.75)',
-    shadowOffset: {
-      width: 0,
+    marginBottom    : 20,
+    flexDirection   : 'row',
+    alignSelf       : 'stretch',
+    alignItems      : 'center',
+    borderWidth     : 1,
+    borderColor     : 'rgba(112, 112, 112, 0.5)',
+    borderStyle     : 'solid',
+    shadowColor     : 'rgba(56,56,56,0.75)',
+    shadowOffset    : {
+      width : 0,
       height: 5,
     },
     shadowOpacity: 0.14,
-    shadowRadius: 6.27,
-    elevation: 10,
-    borderRadius: 4,
+    shadowRadius : 6.27,
+    elevation    : 10,
+    borderRadius : 4,
   },
 })
 
