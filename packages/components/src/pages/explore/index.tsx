@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Dimensions, Image, StyleProp, ViewStyle, ScrollView } from 'react-native';
-import Carousel from 'react-native-snap-carousel';
+import { View, StyleSheet, Dimensions, Image, ScrollView } from 'react-native';
 import { Button, Button2 } from "../../components/button";
-import { HotelSmallCard } from '../../components/card';
 import calendar from '../../../assets/calendar.png';
 import drop     from '../../../assets/drop.png';
 import location from '../../../assets/place.png';
 import group    from '../../../assets/group.png';
+import { InputApp } from '../../components/input';
+import { ProductList } from '../../containers/product-list';
 import cardPic1 from '../../../assets/card_s_taj-vista.png';
 import cardPic2 from '../../../assets/card_s_sheraton.png';
-import { InputApp } from '../../components/input';
 
-const list = [
+export const list = [
   { title: 'Sheraton Grand', source: cardPic1, price: '5999' },
   { title: 'Taj Vista'     , source: cardPic2, price: '6999' },
   { title: 'Taj Vista'     , source: cardPic2, price: '6999' },
@@ -74,49 +73,14 @@ export function Explore() {
             <Image source={drop} style={{ width: 15, height: 20 }} />
           </Button2>
         </View>
-        <ProductList />
-        <ProductList style={{ marginVertical: 20, marginHorizontal: 20 }} />
+        <ProductList data={list} onViewAll={() => {}}>Hotels</ProductList>
+        <ProductList data={list} onViewAll={() => {}} style={{ marginVertical: 20, marginHorizontal: 20 }}>Hotels</ProductList>
       </View>
     </ScrollView>
   );
 }
 
-const horizontalMargin =   7;
-const slideWidth       = 160;
-const itemHeight       = 168;
-const itemWidth        = slideWidth + horizontalMargin * 2;
-const sliderWidth      = Dimensions.get('window').width;
-
-const carouselStyles = StyleSheet.create({
-  container: {},
-  content: {},
-  slide: {
-    paddingHorizontal: 0,
-    width: itemWidth,
-    height: itemHeight,
-  },
-  slideInnerContainer: {
-    width: slideWidth,
-    flex: 1,
-  },
-  slideWrapper: {
-    height: 168,
-    width: 335,
-  },
-});
-
 const styles = StyleSheet.create({
-  title: {
-    color     : '#EF4339',
-    fontSize  : 20,
-    fontWeight: 'bold',
-    lineHeight: 25,
-  },
-  link: {
-    color             : '#1D3AF2',
-    fontWeight        : 'normal',
-    textDecorationLine: 'underline',
-  },
   intput: {
     marginHorizontal: 20,
     marginBottom    : 20,
@@ -137,43 +101,3 @@ const styles = StyleSheet.create({
     borderRadius : 4,
   },
 })
-
-function ProductList(props: ProductListTypeProp) {
-  const { style } = props;
-  return (
-    <View nativeID="todo3" style={style}>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 5 }}>
-        <Text style={{ fontSize: 16, fontWeight: '900', lineHeight: 19 }}>Hotels</Text>
-        <Text style={{ fontSize: 14, fontWeight: '400', lineHeight: 17, color: '#EF4339' }}>Select All</Text>
-      </View>
-      <View style={carouselStyles.slideWrapper}>
-        <Carousel
-          data={list}
-          renderItem={renderItem}
-          sliderWidth={sliderWidth}
-          itemWidth={itemWidth}
-          containerCustomStyle={carouselStyles.container}
-          contentContainerStyle={carouselStyles.content}
-          inactiveSlideOpacity={1}
-          inactiveSlideScale={1}
-          activeSlideAlignment="start"
-          removeClippedSubviews={false}
-        />
-      </View>
-    </View>
-  );
-
-  function renderItem({item, index}) {
-    return (
-      <View style={carouselStyles.slide}>
-        <View style={carouselStyles.slideInnerContainer}>
-          <HotelSmallCard source={item.source} price={item.price}>{item.title}</HotelSmallCard>
-        </View>
-      </View>
-    );
-  }
-}
-
-interface ProductListTypeProp {
-  style?: StyleProp<ViewStyle>;
-}
