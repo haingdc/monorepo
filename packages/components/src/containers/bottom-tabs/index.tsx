@@ -4,12 +4,12 @@ import { Image } from 'react-native';
 import { Explore } from '../../pages/explore';
 import { Wishlist } from "../../pages/wishlist";
 import { Profile } from '../../pages/profile';
-import circle from '../../../assets/circle.png'
-import circleInactive from '../../../assets/circle-inactive.png'
-import bookmark from '../../../assets/bookmark.png'
+import human            from '../../../assets/human.png'
+import circle           from '../../../assets/circle.png'
+import bookmark         from '../../../assets/bookmark.png'
+import humanInactive    from '../../../assets/human-inactive.png'
+import circleInactive   from '../../../assets/circle-inactive.png'
 import bookmarkInactive from '../../../assets/bookmark-inactive.png'
-import human from '../../../assets/human.png'
-import humanInactive from '../../../assets/human-inactive.png'
 
 enum TABS {
   EXPLORE  = 'EXPLORE',
@@ -32,8 +32,8 @@ export function BottomTabs() {
         },
       })}
     >
-      <Tab.Screen name={TABS.EXPLORE } component={Explore } />
       <Tab.Screen name={TABS.WISHLIST} component={Wishlist} />
+      <Tab.Screen name={TABS.EXPLORE } component={Explore } />
       <Tab.Screen name={TABS.PROFILE } component={Profile } />
     </Tab.Navigator>
   );
