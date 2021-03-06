@@ -25,7 +25,6 @@ export function Explore() {
   return (
     <ScrollView>
       <View
-        nativeID="todo"
         style={{
           flex: 1,
           paddingTop: 30,
