@@ -35,8 +35,6 @@ export function ProductList(props: ProductListTypeProp<Item>) {
           inactiveSlideOpacity={1}
           activeSlideAlignment="start"
           removeClippedSubviews={false}
-          containerCustomStyle={carouselStyles.container}
-          contentContainerStyle={carouselStyles.content}
         />
       </View>
     </View>
@@ -68,8 +66,6 @@ export const itemWidth   = slideWidth + horizontalMargin * 2;
 export const sliderWidth = Dimensions.get('window').width;
 
 export const carouselStyles = StyleSheet.create({
-  container: {},
-  content: {},
   slide: {
     paddingHorizontal: 0,
     width: itemWidth,
