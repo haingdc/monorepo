@@ -6,6 +6,7 @@
 .next
 .vscode
 node_modules
+trash/*
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
