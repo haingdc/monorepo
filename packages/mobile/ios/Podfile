@@ -1,9 +1,11 @@
 require_relative '../../../node_modules/react-native/scripts/react_native_pods'
 require_relative '../../../node_modules/@react-native-community/cli-platform-ios/native_modules'
+require_relative '../../../node_modules/react-native-unimodules/cocoapods.rb'
 
-platform :ios, '10.0'
+platform :ios, '11.0'
 
 target 'myprojectname' do
+  use_unimodules!
   config = use_native_modules!
 
   use_react_native!(:path => config[:reactNativePath])
@@ -31,3 +33,8 @@ target 'myprojectname-tvOS' do
     # Pods for testing
   end
 end
+
+pod 'RNCAsyncStorage', :path => '../../../node_modules/@react-native-community/async-storage'
+pod 'UMCore', :path => '../../../node_modules/@unimodules/core/ios'
+pod 'UMReactNativeAdapter', :path => '../../../node_modules/@unimodules/react-native-adapter/ios'
+pod 'EXBlur', :path => '../../../node_modules/expo-blur/ios'

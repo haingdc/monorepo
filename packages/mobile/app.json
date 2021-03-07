@@ -1,4 +1,13 @@
 {
   "name": "myprojectname",
-  "displayName": "myprojectname"
+  "displayName": "myprojectname",
+  "updates": {
+    "fallbackToCacheTimeout": 0
+  },
+  "assetBundlePatterns": ["**/*"],
+  "packagerOpts": {
+    "projectRoots": "",
+    "sourceExts": ["js", "json", "ts", "tsx", "jsx"],
+    "config": "metro.config.js"
+  }
 }
