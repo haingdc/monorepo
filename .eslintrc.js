@@ -19,6 +19,7 @@ module.exports = {
   },
   rules: {
     'prettier/prettier': 0,
+    'eqeqeq': 0,
     'global-require': 0,
     'import/prefer-default-export': 'off',
     'max-classes-per-file': 'off',
