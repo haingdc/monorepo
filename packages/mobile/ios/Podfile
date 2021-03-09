@@ -38,3 +38,4 @@ pod 'RNCAsyncStorage', :path => '../../../node_modules/@react-native-community/a
 pod 'UMCore', :path => '../../../node_modules/@unimodules/core/ios'
 pod 'UMReactNativeAdapter', :path => '../../../node_modules/@unimodules/react-native-adapter/ios'
 pod 'EXBlur', :path => '../../../node_modules/expo-blur/ios'
+pod 'RNSVG', :path => '../../../node_modules/react-native-svg'

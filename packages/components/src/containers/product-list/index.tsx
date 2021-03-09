@@ -1,12 +1,34 @@
 import React, { PropsWithChildren } from 'react';
 import { View, Text, StyleProp, ViewStyle, StyleSheet, Dimensions, GestureResponderEvent } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
+import ContentLoader, { Rect } from "react-content-loader/native";
 import { HotelSmallCard } from '../../components/card';
 
+const MyLoader = (props) => (
+  <ContentLoader
+    speed={2}
+    width={160}
+    height={168}
+    viewBox="0 0 160 168"
+    backgroundColor="#e7e3e3"
+    foregroundColor="#fafafa"
+    {...props}
+  >
+    <Rect x="0" y="0" rx="4" ry="4" width="160" height="100" />
+    <Rect x="0" y="115" rx="3" ry="3" width="127" height="20" />
+    <Rect x="0" y="145" rx="3" ry="3" width="60" height="15" />
+
+  </ContentLoader>
+)
+
+export default MyLoader
+
 type Item = {
-  title: string;
-  source: any;
-  price: string;
+  title         : string;
+  source        : any;
+  price         : string;
+  priceDiscount?: string;
+  isDiscount?   : boolean
 }
 
 export function ProductList(props: ProductListTypeProp<Item>) {
@@ -41,10 +63,19 @@ export function ProductList(props: ProductListTypeProp<Item>) {
   );
 
   function renderItem({ item, index }) {
+    const { isDiscount = false, priceDiscount } = item as Item;
     return (
       <View style={carouselStyles.slide}>
         <View style={carouselStyles.slideInnerContainer}>
-          <HotelSmallCard source={item.source} price={item.price}>{item.title}</HotelSmallCard>
+          {/* <HotelSmallCard
+            price         = {item.price}
+            priceDiscount = {priceDiscount}
+            isDiscount    = {isDiscount}
+            source        = {item.source}
+          >
+            {item.title}
+          </HotelSmallCard> */}
+          <MyLoader />
         </View>
       </View>
     );
@@ -52,9 +83,9 @@ export function ProductList(props: ProductListTypeProp<Item>) {
 }
 
 interface ProductListTypeProp<T> extends PropsWithChildren<any> {
-  children: string;
-  style?: StyleProp<ViewStyle>;
-  data: ReadonlyArray<T>;
+  children : string;
+  style?   : StyleProp<ViewStyle>;
+  data     : ReadonlyArray<T>;
   onViewAll: (event: GestureResponderEvent) => void;
 }
 

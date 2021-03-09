@@ -31,6 +31,20 @@
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = myprojectname;
 		};
+		0E54B21525F78C2100F7D33B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0E54B20F25F78C2100F7D33B /* RNSVG.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0CF68AC11AF0540F00FF9E5C;
+			remoteInfo = RNSVG;
+		};
+		0E54B21725F78C2100F7D33B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0E54B20F25F78C2100F7D33B /* RNSVG.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 94DDAC5C1F3D024300EED511;
+			remoteInfo = "RNSVG-tvOS";
+		};
 		0E70FD6C25ED5DD600CCD53C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0E70FD6825ED5DD600CCD53C /* RNCAsyncStorage.xcodeproj */;
@@ -55,6 +69,7 @@
 		01D26023C4C0DDDD66C71997 /* Pods-myprojectname-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myprojectname-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-myprojectname-tvOSTests/Pods-myprojectname-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		095E7FA3877D8CD67E1B5F3F /* Pods-myprojectname-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myprojectname-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-myprojectname-tvOS/Pods-myprojectname-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		0E180E4E25EBA2E100621A52 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ionicons.ttf; path = "../../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		0E54B20F25F78C2100F7D33B /* RNSVG.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNSVG.xcodeproj; path = "../../../node_modules/react-native-svg/ios/RNSVG.xcodeproj"; sourceTree = "<group>"; };
 		0E70FD6825ED5DD600CCD53C /* RNCAsyncStorage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCAsyncStorage.xcodeproj; path = "../../../node_modules/@react-native-community/async-storage/ios/RNCAsyncStorage.xcodeproj"; sourceTree = "<group>"; };
 		0E70FD7225ED5E4A00CCD53C /* libRNCAsyncStorage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNCAsyncStorage.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EA0D09B25F38F0D008157FC /* libreact-native-blur.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libreact-native-blur.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,6 +158,15 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
+		0E54B21025F78C2100F7D33B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0E54B21625F78C2100F7D33B /* libRNSVG.a */,
+				0E54B21825F78C2100F7D33B /* libRNSVG-tvOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		0E70FD6925ED5DD600CCD53C /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +223,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				0E54B20F25F78C2100F7D33B /* RNSVG.xcodeproj */,
 				0E70FD6825ED5DD600CCD53C /* RNCAsyncStorage.xcodeproj */,
 			);
 			name = Libraries;
@@ -356,6 +381,10 @@
 					ProductGroup = 0E70FD6925ED5DD600CCD53C /* Products */;
 					ProjectRef = 0E70FD6825ED5DD600CCD53C /* RNCAsyncStorage.xcodeproj */;
 				},
+				{
+					ProductGroup = 0E54B21025F78C2100F7D33B /* Products */;
+					ProjectRef = 0E54B20F25F78C2100F7D33B /* RNSVG.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -368,6 +397,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		0E54B21625F78C2100F7D33B /* libRNSVG.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNSVG.a;
+			remoteRef = 0E54B21525F78C2100F7D33B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0E54B21825F78C2100F7D33B /* libRNSVG-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRNSVG-tvOS.a";
+			remoteRef = 0E54B21725F78C2100F7D33B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		0E70FD6D25ED5DD600CCD53C /* libRNCAsyncStorage.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -535,7 +578,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-myprojectname/Pods-myprojectname-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core-60309c9c/AccessibilityResources.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core.common-CoreModulesHeaders/AccessibilityResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -553,7 +596,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-myprojectname-myprojectnameTests/Pods-myprojectname-myprojectnameTests-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core-60309c9c/AccessibilityResources.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core.common-CoreModulesHeaders/AccessibilityResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -571,7 +614,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-myprojectname-tvOS/Pods-myprojectname-tvOS-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core.common/AccessibilityResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
