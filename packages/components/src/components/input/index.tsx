@@ -8,11 +8,11 @@ import {
 
 
 export function InputApp(props: {
-  style: Record<string, unknown>;
-  avatar: ImageSourcePropType;
+  style     : Record<string, unknown>;
+  avatar    : ImageSourcePropType;
   imageStyle: { width: number; height: number; };
-  value: string;
-  type: 'password' | 'username' | 'emailAddress' | 'location';
+  value     : string;
+  type      : 'password' | 'username' | 'emailAddress' | 'location';
   onChangeText: ((text: string) => void) | undefined;
 }) {
   const { style, avatar, type, imageStyle, value, onChangeText } = props;
