@@ -8,9 +8,9 @@ import cardPic1 from '../../../assets/card_s_taj-vista.png';
 import cardPic2 from '../../../assets/card_s_sheraton.png';
 
 export const list = [
-  { title: 'Sheraton Grand', source: cardPic1, price: '5999' },
-  { title: 'Taj Vista'     , source: cardPic2, price: '6999' },
-  { title: 'Taj Vista'     , source: cardPic2, price: '6999' },
+  { title: 'Sheraton Grand', source: cardPic1, price: '5988', isDiscount: true, priceDiscount: "6067" },
+  { title: 'Taj Vista'     , source: cardPic2, price: '6999', isDiscount: true, priceDiscount: "6067" },
+  { title: 'Taj Vista'     , source: cardPic2, price: '6999', isDiscount: true, priceDiscount: "6067" },
 ];
 
 export function Wishlist() {

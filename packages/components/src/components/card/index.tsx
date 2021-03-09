@@ -1,19 +1,36 @@
 import React, { PropsWithChildren, ReactNode } from 'react';
-import { View, StyleSheet, Text, Image, ImageSourcePropType } from 'react-native';
-import currencyPic from '../../../assets/currency.png';
-import currencyDiscountPic from '../../../assets/currency-discount.png';
+import { View, StyleSheet, Text, Image, ImageSourcePropType, ViewStyle, StyleProp } from 'react-native';
+import blackSign from '../../../assets/currency.png';
+import redSign from '../../../assets/currency-discount.png';
 
 export function HotelSmallCard(props: HotelSmallCardPropType) {
-  const { source, price, children, type = 'default' } = props;
+  const { source, price, priceDiscount, isDiscount, children, type = 'default' } = props;
   return (
     <View style={styles.container}>
       <Image style={styles.smallImage} source={source} />
       <View style={hotelCardStyles.container}>
         <Text style={hotelCardStyles.name}>{children}</Text>
-        <Currency type={type}>{price}</Currency>
+        <View style={{ flexDirection: 'row' }}>
+          {
+            isDiscount
+                ?
+                  <Currency currencyPhoto={blackSign} isCut color="#000" style={{ marginRight: 10 }}>{priceDiscount}</Currency>
+                :
+                  undefined
+          }
+          <Currency currencyPhoto={isDiscount ? redSign : blackSign} isCut={false} color={isDiscount ? '#EF4B41' : '#000'}>{price}</Currency>
+        </View>
       </View>
     </View>
   )
+}
+
+interface HotelSmallCardPropType extends PropsWithChildren<any>{
+  source        : ImageSourcePropType;
+  price         : string;
+  priceDiscount?: string;
+  isDiscount    : boolean;
+  type?         : 'red' | 'default'
 }
 
 const hotelCardStyles = StyleSheet.create({
@@ -29,24 +46,24 @@ const hotelCardStyles = StyleSheet.create({
   },
 });
 
-interface HotelSmallCardPropType extends PropsWithChildren<any>{
-  source: ImageSourcePropType;
-  price : string;
-  type? : 'red' | 'default'
-}
-
-function Currency(props: PropsWithChildren<{ type?: 'red' | 'default' }>) {
-  const { children, type = 'default'} = props;
-  const pic   = type == 'default' ? currencyPic : currencyDiscountPic;
-  const color = type == 'default' ? '#000' : '#EF4B41';
+function Currency(props: CurrencyTypeProp) {
+  const { children, style, color , isCut, currencyPhoto } = props;
   return (
-    <View nativeID="todoCurrency" style={[styles.currency ]}>
-        <View style={styles.line}/>
-        <Image source={pic} style={styles.currencySign}/>
+    <View style={[style, styles.currency ]}>
+        {isCut ? <View style={styles.line}/> : undefined}
+        <Image source={currencyPhoto} style={styles.currencySign}/>
         <Text style={{ color }}> {children} </Text>
     </View>
   );
 }
+
+interface CurrencyTypeProp extends PropsWithChildren<any> {
+  isCut  : boolean;
+  color  : '#EF4B41' | '#000';
+  style? : StyleProp<ViewStyle>;
+  currencyPhoto: ImageSourcePropType;
+}
+
 
 const styles = StyleSheet.create({
   container: {
