@@ -1,11 +1,11 @@
 import React, { useRef } from 'react';
 import { StyleSheet, Text, ScrollView, View, Image, Platform } from 'react-native';
 import { BlurView } from 'expo-blur';
-import { ProductList } from '../../containers/product-list';
-import cursor   from '../../../assets/cursor.png';
-import chevron  from '../../../assets/chevron-right.png';
-import cardPic1 from '../../../assets/card_s_taj-vista.png';
-import cardPic2 from '../../../assets/card_s_sheraton.png';
+import { ProductList } from '../../../containers/product-list';
+import cursor   from '../../../../assets/cursor.png';
+import chevron  from '../../../../assets/chevron-right.png';
+import cardPic1 from '../../../../assets/card_s_taj-vista.png';
+import cardPic2 from '../../../../assets/card_s_sheraton.png';
 
 export const list = [
   { title: 'Sheraton Grand', source: cardPic1, price: '5988', isDiscount: true, priceDiscount: "6067" },
@@ -13,34 +13,22 @@ export const list = [
   { title: 'Taj Vista'     , source: cardPic2, price: '6999', isDiscount: true, priceDiscount: "6067" },
 ];
 
-export function Wishlist() {
+export function SearchResult() {
   return (
-    <ScrollView>
-      <View
-        nativeID="todo"
-        style={{
-          flex: 1,
-          alignItems: 'center',
-          alignSelf: 'center',
-          width: 375,
-          paddingTop: 30,
-          paddingBottom: 40,
-        }}
-      >
-        <View nativeID="todoBanner" style={bannerStyles.container}>
-          <Image style={bannerStyles.cursor} source={cursor}/>
-          <View style={bannerStyles.textWrapper}>
-            <Text style={bannerStyles.text}>We have deals for</Text>
-            <Text style={bannerStyles.text}>your favorite and relaxing</Text>
-            <Text style={bannerStyles.text}>stay.</Text>
-          </View>
-          <ViewButton style={bannerStyles.cta} />
+    <>
+      <View style={bannerStyles.container}>
+        <Image style={bannerStyles.cursor} source={cursor}/>
+        <View style={bannerStyles.textWrapper}>
+          <Text style={bannerStyles.text}>We have deals for</Text>
+          <Text style={bannerStyles.text}>your favorite and relaxing</Text>
+          <Text style={bannerStyles.text}>stay.</Text>
         </View>
-        <ProductList data={list} key="Hotels1" onViewAll={() => {}}>Top Hotels</ProductList>
-        <ProductList data={list} key="Hotels2" onViewAll={() => {}}
-                     style={{ marginVertical: 20, marginHorizontal: 20 }}>Top Deals</ProductList>
+        <ViewButton style={bannerStyles.cta} />
       </View>
-    </ScrollView>
+      <ProductList data={list} key="Hotels1" onViewAll={() => {}}>Top Hotels</ProductList>
+      <ProductList data={list} key="Hotels2" onViewAll={() => {}}
+                   style={{ marginVertical: 20, marginHorizontal: 20 }}>Top Deals</ProductList>
+    </>
   );
 }
 

@@ -35,16 +35,11 @@ export function ProductList(props: ProductListTypeProp<Item>) {
   const { style, data, children, onViewAll } = props;
   return (
     <View style={style}>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 5 }}>
-        <Text style={{ fontSize: 16, fontWeight: '900', lineHeight: 19 }}>{children}</Text>
+      <View style={listStyles.header}>
+        <Text style={listStyles.title}>{children}</Text>
         <Text
           onPress={onViewAll}
-          style={{
-            color     : '#EF4339',
-            fontSize  : 14,
-            fontWeight: '400',
-            lineHeight: 17,
-          }}
+          style={listStyles.cta}
         >Select All</Text>
       </View>
       <View style={carouselStyles.slideWrapper}>
@@ -67,15 +62,14 @@ export function ProductList(props: ProductListTypeProp<Item>) {
     return (
       <View style={carouselStyles.slide}>
         <View style={carouselStyles.slideInnerContainer}>
-          {/* <HotelSmallCard
+          <HotelSmallCard
             price         = {item.price}
             priceDiscount = {priceDiscount}
             isDiscount    = {isDiscount}
             source        = {item.source}
           >
             {item.title}
-          </HotelSmallCard> */}
-          <MyLoader />
+          </HotelSmallCard>
         </View>
       </View>
     );
@@ -96,6 +90,25 @@ const itemHeight       = 168;
 export const itemWidth   = slideWidth + horizontalMargin * 2;
 export const sliderWidth = Dimensions.get('window').width;
 
+const listStyles = StyleSheet.create({
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 5,
+  },
+  title: {
+    fontSize: 16,
+    fontWeight: '900',
+    lineHeight: 19,
+  },
+  cta: {
+    color     : '#EF4339',
+    fontSize  : 14,
+    fontWeight: '400',
+    lineHeight: 17,
+  },
+});
+
 export const carouselStyles = StyleSheet.create({
   slide: {
     paddingHorizontal: 0,
@@ -111,3 +124,41 @@ export const carouselStyles = StyleSheet.create({
     width: 335,
   },
 });
+
+// # skeleton
+export function ProductListSkeleton(props: ProductListTypeProp<Item>) {
+  const { style, data, children, onViewAll } = props;
+  return (
+    <View style={style}>
+      <View style={listStyles.header}>
+        <Text style={listStyles.title}>{children}</Text>
+        <Text
+          onPress={onViewAll}
+          style={listStyles.cta}
+        >Select All</Text>
+      </View>
+      <View style={carouselStyles.slideWrapper}>
+        <Carousel
+          data={data}
+          renderItem={renderItem}
+          itemWidth={itemWidth}
+          sliderWidth={sliderWidth}
+          inactiveSlideScale={1}
+          inactiveSlideOpacity={1}
+          activeSlideAlignment="start"
+          removeClippedSubviews={false}
+        />
+      </View>
+    </View>
+  );
+
+  function renderItem() {
+    return (
+      <View style={carouselStyles.slide}>
+        <View style={carouselStyles.slideInnerContainer}>
+          <MyLoader />
+        </View>
+      </View>
+    );
+  }
+}

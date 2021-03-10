@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, Dimensions, Image, ScrollView } from 'react-native';
+import React, { useReducer, useState } from 'react';
+import { View, StyleSheet, Image, ScrollView } from 'react-native';
 import { Button, Button2 } from "../../components/button";
 import calendar from '../../../assets/calendar.png';
 import drop     from '../../../assets/drop.png';
 import location from '../../../assets/place.png';
 import group    from '../../../assets/group.png';
 import { InputApp } from '../../components/input';
-import { ProductList } from '../../containers/product-list';
+import { ProductList, ProductListSkeleton } from '../../containers/product-list';
 import cardPic1 from '../../../assets/card_s_taj-vista.png';
 import cardPic2 from '../../../assets/card_s_sheraton.png';
+import { getRandomFloat } from '../../utils';
+import { SearchResult } from './sub/searchResult';
 
 export const list = [
   { title: 'Sheraton Grand', source: cardPic1, price: '5999' },
@@ -16,21 +18,57 @@ export const list = [
   { title: 'Taj Vista'     , source: cardPic2, price: '6999' },
 ];
 
+interface State {
+  status: 'initial' | 'loading' | 'fetchingSuccess' | 'fetchingFail';
+}
+
+interface Action {
+  type: string;
+}
+
 export function Explore() {
   const [place  , setPlace  ] = useState('Bangalore');
   const [goStart, setGoStart] = useState('27 May, 2020');
   const [goEnd  , setGoEnd  ] = useState('30 May, 2020');
   const [members, setMembers] = useState('1 Adult');
 
+  const initialState: State = {
+    status: 'initial',
+  };
+
+  const [state, dispatch] = useReducer<(prevState: State, action: Action) => State>(function reducer(prevState, action) {
+    switch (action.type) {
+      case 'loading':
+        return {
+          ...prevState,
+          status: 'loading',
+        };
+      case 'fetchingSuccess':
+        return {
+          ...prevState,
+          status: 'fetchingSuccess'
+        };
+      default:
+        return prevState;
+    }
+  }, initialState);
+
+  function pressSearch() {
+    dispatch({ type: 'loading' });
+    setTimeout(() => {
+      dispatch({ type: 'fetchingSuccess' })
+    }, getRandomFloat(1400, 2800));
+  }
+
   return (
     <ScrollView>
       <View
         style={{
           flex: 1,
-          paddingTop: 30,
           alignItems: 'center',
           alignSelf: 'center',
           width: 375,
+          paddingTop: 30,
           paddingBottom: 40,
         }}
       >
@@ -67,13 +105,30 @@ export function Explore() {
             imageStyle={{ width: 13.43, height: 18.77 }}
         />
         <View style={{ flexDirection: 'row', marginBottom: 30 }}>
-          <Button>Search</Button>
+          <Button onPress={pressSearch}>Search</Button>
           <Button2 style={{ width: 45, height: 40, marginLeft: 10 }}>
             <Image source={drop} style={{ width: 15, height: 20 }} />
           </Button2>
         </View>
-        <ProductList data={list} onViewAll={() => {}}>Hotels</ProductList>
-        <ProductList data={list} onViewAll={() => {}} style={{ marginVertical: 20, marginHorizontal: 20 }}>Hotels</ProductList>
+        {
+          state.status == 'initial'
+            ?   <>
+                  <ProductList data={list} onViewAll={() => {}}>Hotels</ProductList>
+                  <ProductList data={list} onViewAll={() => {}} style={{ marginVertical: 20, marginHorizontal: 20 }}>Hotels</ProductList>
+                </>
+            : undefined
+        }
+        {
+          state.status == 'loading'
+            ?   <>
+                  <ProductListSkeleton data={list} onViewAll={() => {}}>Hotels</ProductListSkeleton>
+                  <ProductListSkeleton data={list} onViewAll={() => {}} style={{ marginVertical: 20, marginHorizontal: 20 }}>Hotels</ProductListSkeleton>
+                </>
+            : undefined
+        }
+        {
+          state.status == 'fetchingSuccess' ? <SearchResult /> : undefined
+        }
       </View>
     </ScrollView>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image } from 'react-native';
 import { Explore } from '../../pages/explore';
-import { Wishlist } from "../../pages/wishlist";
+import { SearchResult } from "../../pages/explore/sub/searchResult";
 import { Profile } from '../../pages/profile';
 import human            from '../../../assets/human.png'
 import circle           from '../../../assets/circle.png'
@@ -32,8 +32,8 @@ export function BottomTabs() {
         },
       })}
     >
-      <Tab.Screen name={TABS.WISHLIST} component={Wishlist} />
       <Tab.Screen name={TABS.EXPLORE } component={Explore } />
+      <Tab.Screen name={TABS.WISHLIST} component={SearchResult} />
       <Tab.Screen name={TABS.PROFILE } component={Profile } />
     </Tab.Navigator>
   );
