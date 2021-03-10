@@ -16,15 +16,7 @@ export const list = [
 export function SearchResult() {
   return (
     <>
-      <View style={bannerStyles.container}>
-        <Image style={bannerStyles.cursor} source={cursor}/>
-        <View style={bannerStyles.textWrapper}>
-          <Text style={bannerStyles.text}>We have deals for</Text>
-          <Text style={bannerStyles.text}>your favorite and relaxing</Text>
-          <Text style={bannerStyles.text}>stay.</Text>
-        </View>
-        <ViewButton style={bannerStyles.cta} />
-      </View>
+      <Banner />
       <ProductList data={list} key="Hotels1" onViewAll={() => {}}>Top Hotels</ProductList>
       <ProductList data={list} key="Hotels2" onViewAll={() => {}}
                    style={{ marginVertical: 20, marginHorizontal: 20 }}>Top Deals</ProductList>
@@ -79,6 +71,20 @@ const viewButtonStyles = StyleSheet.create({
     height: 14,
   },
 });
+
+function Banner() {
+  return (
+    <View style={bannerStyles.container}>
+      <Image style={bannerStyles.cursor} source={cursor}/>
+      <View style={bannerStyles.textWrapper}>
+        <Text style={bannerStyles.text}>We have deals for</Text>
+        <Text style={bannerStyles.text}>your favorite and relaxing</Text>
+        <Text style={bannerStyles.text}>stay.</Text>
+      </View>
+      <ViewButton style={bannerStyles.cta} />
+    </View>
+  )
+}
 
 const bannerStyles = StyleSheet.create({
   container: {
