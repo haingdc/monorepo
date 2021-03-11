@@ -10,6 +10,7 @@ const Stack = createStackNavigator()
 export function Explore({ navigation }: StackScreenProps<any>) {
   return (
     <Stack.Navigator>
+      <Stack.Screen name="Index" component={Index} />
       <Stack.Screen
         name="TopHotels"
         component={TopHotels}
@@ -19,7 +20,6 @@ export function Explore({ navigation }: StackScreenProps<any>) {
           },
         }}
       />
-      <Stack.Screen name="Index" component={Index} />
     </Stack.Navigator>
   )
 }

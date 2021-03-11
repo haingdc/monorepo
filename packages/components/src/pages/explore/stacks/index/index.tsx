@@ -115,7 +115,7 @@ export function Index({ navigation }) {
             <Image source={drop} style={{ width: 15, height: 20 }} />
           </Button2>
         </View>
-        {state.status == 'initial' || state.status == 'fetchingSuccess' ? (
+        {state.status == 'initial' ? (
           <>
             <ProductList
               data={list}
@@ -127,7 +127,9 @@ export function Index({ navigation }) {
             </ProductList>
             <ProductList
               data={list}
-              onViewAll={() => {}}
+              onViewAll={() => {
+                navigation.navigate('TopHotels')
+              }}
               style={{ marginVertical: 20, marginHorizontal: 20 }}
             >
               Hotels
@@ -148,9 +150,7 @@ export function Index({ navigation }) {
             </ProductListSkeleton>
           </>
         ) : undefined}
-        {/* {
-          state.status == 'fetchingSuccess' ? <SearchResult /> : undefined
-        } */}
+        {state.status == 'fetchingSuccess' ? <SearchResult /> : undefined}
       </View>
     </ScrollView>
   )
