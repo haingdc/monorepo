@@ -1,8 +1,16 @@
-import React, { PropsWithChildren } from 'react';
-import { View, Text, StyleProp, ViewStyle, StyleSheet, Dimensions, GestureResponderEvent } from 'react-native';
-import Carousel from 'react-native-snap-carousel';
-import ContentLoader, { Rect } from "react-content-loader/native";
-import { HotelSmallCard } from '../../components/card';
+import React, { PropsWithChildren } from 'react'
+import {
+  View,
+  Text,
+  StyleProp,
+  ViewStyle,
+  StyleSheet,
+  Dimensions,
+  GestureResponderEvent,
+} from 'react-native'
+import Carousel from 'react-native-snap-carousel'
+import ContentLoader, { Rect } from 'react-content-loader/native'
+import { HotelSmallCard } from '../../components/card'
 
 const MyLoader = (props) => (
   <ContentLoader
@@ -17,30 +25,28 @@ const MyLoader = (props) => (
     <Rect x="0" y="0" rx="4" ry="4" width="160" height="100" />
     <Rect x="0" y="115" rx="3" ry="3" width="127" height="20" />
     <Rect x="0" y="145" rx="3" ry="3" width="60" height="15" />
-
   </ContentLoader>
 )
 
 export default MyLoader
 
 type Item = {
-  title         : string;
-  source        : any;
-  price         : string;
-  priceDiscount?: string;
-  isDiscount?   : boolean
+  title: string
+  source: any
+  price: string
+  priceDiscount?: string
+  isDiscount?: boolean
 }
 
 export function ProductList(props: ProductListTypeProp<Item>) {
-  const { style, data, children, onViewAll } = props;
+  const { style, data, children, onViewAll } = props
   return (
     <View style={style}>
       <View style={listStyles.header}>
         <Text style={listStyles.title}>{children}</Text>
-        <Text
-          onPress={onViewAll}
-          style={listStyles.cta}
-        >Select All</Text>
+        <Text onPress={onViewAll} style={listStyles.cta}>
+          Select All
+        </Text>
       </View>
       <View style={carouselStyles.slideWrapper}>
         <Carousel
@@ -55,40 +61,40 @@ export function ProductList(props: ProductListTypeProp<Item>) {
         />
       </View>
     </View>
-  );
+  )
 
   function renderItem({ item, index }) {
-    const { isDiscount = false, priceDiscount } = item as Item;
+    const { isDiscount = false, priceDiscount } = item as Item
     return (
       <View style={carouselStyles.slide}>
         <View style={carouselStyles.slideInnerContainer}>
           <HotelSmallCard
-            price         = {item.price}
-            priceDiscount = {priceDiscount}
-            isDiscount    = {isDiscount}
-            source        = {item.source}
+            price={item.price}
+            priceDiscount={priceDiscount}
+            isDiscount={isDiscount}
+            source={item.source}
           >
             {item.title}
           </HotelSmallCard>
         </View>
       </View>
-    );
+    )
   }
 }
 
 interface ProductListTypeProp<T> extends PropsWithChildren<any> {
-  children : string;
-  style?   : StyleProp<ViewStyle>;
-  data     : ReadonlyArray<T>;
-  onViewAll: (event: GestureResponderEvent) => void;
+  children: string
+  style?: StyleProp<ViewStyle>
+  data: ReadonlyArray<T>
+  onViewAll: (event: GestureResponderEvent) => void
 }
 
 // follow instruction from official website react-native-snap-carousel to have spacing between slides
-const horizontalMargin =   7;
-const slideWidth       = 160;
-const itemHeight       = 168;
-export const itemWidth   = slideWidth + horizontalMargin * 2;
-export const sliderWidth = Dimensions.get('window').width;
+const horizontalMargin = 7
+const slideWidth = 160
+const itemHeight = 168
+export const itemWidth = slideWidth + horizontalMargin * 2
+export const sliderWidth = Dimensions.get('window').width
 
 const listStyles = StyleSheet.create({
   header: {
@@ -102,12 +108,12 @@ const listStyles = StyleSheet.create({
     lineHeight: 19,
   },
   cta: {
-    color     : '#EF4339',
-    fontSize  : 14,
+    color: '#EF4339',
+    fontSize: 14,
     fontWeight: '400',
     lineHeight: 17,
   },
-});
+})
 
 export const carouselStyles = StyleSheet.create({
   slide: {
@@ -123,19 +129,18 @@ export const carouselStyles = StyleSheet.create({
     height: 168,
     width: 335,
   },
-});
+})
 
 // # skeleton
 export function ProductListSkeleton(props: ProductListTypeProp<Item>) {
-  const { style, data, children, onViewAll } = props;
+  const { style, data, children, onViewAll } = props
   return (
     <View style={style}>
       <View style={listStyles.header}>
         <Text style={listStyles.title}>{children}</Text>
-        <Text
-          onPress={onViewAll}
-          style={listStyles.cta}
-        >Select All</Text>
+        <Text style={listStyles.cta} onPress={onViewAll}>
+          Select All
+        </Text>
       </View>
       <View style={carouselStyles.slideWrapper}>
         <Carousel
@@ -150,7 +155,7 @@ export function ProductListSkeleton(props: ProductListTypeProp<Item>) {
         />
       </View>
     </View>
-  );
+  )
 
   function renderItem() {
     return (
@@ -159,6 +164,6 @@ export function ProductListSkeleton(props: ProductListTypeProp<Item>) {
           <MyLoader />
         </View>
       </View>
-    );
+    )
   }
 }
