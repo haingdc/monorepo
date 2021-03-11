@@ -1,5 +1,6 @@
 import React, { useReducer, useState } from 'react'
 import { View, StyleSheet, Image, ScrollView } from 'react-native'
+import { StackScreenProps } from '@react-navigation/stack'
 import { Button, Button2 } from '../../../../components/button'
 import {
   ProductList,
@@ -29,7 +30,8 @@ interface Action {
   type: string
 }
 
-export function Index({ navigation }) {
+export function Index(props: StackScreenProps<any>) {
+  const { navigation } = props
   const [place, setPlace] = useState('Bangalore')
   const [goStart, setGoStart] = useState('27 May, 2020')
   const [goEnd, setGoEnd] = useState('30 May, 2020')

@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-community/async-storage'
 import React from 'react'
+import { Text } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
@@ -9,6 +10,7 @@ import { SignIn } from './pages/sign-in'
 import { AuthContext, AuthTypes } from './contexts/auth'
 import { SplashScreen } from './pages/loading'
 import { BottomTabs } from './containers/bottom-tabs'
+import { SafeAreaViewVisualizer } from './DataView'
 
 const Stack = createStackNavigator()
 
@@ -116,9 +118,14 @@ export function App({ navigation }) {
 
   return (
     <AuthContext.Provider value={authContext}>
-      <SafeAreaProvider>
+      <SafeAreaProvider /* style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }} */
+      >
         <NavigationContainer>
-          <Stack.Navigator>
+          <Stack.Navigator
+            mode="modal"
+            headerMode="screen"
+            screenOptions={{ headerShown: false, gestureEnabled: true }}
+          >
             {state.isLoading ? (
               // We haven't finished checking for the token yet
               <Stack.Screen name="Splash" component={SplashScreen} />
@@ -126,18 +133,18 @@ export function App({ navigation }) {
               // No token found, user isn't signed in
               [
                 <Stack.Screen
+                  key="Welcome"
                   name="Welcome"
                   component={Welcome}
-                  key="Welcome"
                 />,
                 <Stack.Screen
-                  name="SignIn"
-                  component={SignIn}
                   key="SignIn"
+                  name="SignIn"
                   options={{
                     title: 'Sign in',
                     animationTypeForReplace: state.isSignout ? 'pop' : 'push', // When logging out, a pop animation feels intuitive
                   }}
+                  component={SignIn}
                 />,
                 <Stack.Screen name="SignUp" component={SignUp} key="SignUp" />,
               ]
@@ -145,8 +152,8 @@ export function App({ navigation }) {
               // User is signed in
               <Stack.Screen
                 name="Explore"
-                component={BottomTabs}
                 options={{ headerShown: false }}
+                component={BottomTabs}
               />
             )}
           </Stack.Navigator>

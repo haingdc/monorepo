@@ -8,6 +8,7 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from 'react-native'
+import { StackScreenProps } from '@react-navigation/stack'
 import useToggle from '../../../../hooks/useToggle'
 import hotel1 from '../../../../../assets/parkPlaza.png'
 import hotel2 from '../../../../../assets/SarovarPortico.png'
@@ -48,10 +49,15 @@ const hotelList = [
   },
 ]
 
-export function TopHotels() {
+export function TopHotels(props: StackScreenProps<any>) {
+  const { navigation } = props
   const [flag, toggleFlag] = useToggle(false)
   const [list, setList] = useState(hotelList)
   function noop(id: string) {}
+
+  function bookRoom() {
+    navigation.navigate('Book')
+  }
   return (
     <ScrollView>
       <View
@@ -76,7 +82,7 @@ export function TopHotels() {
               percent={percent}
               price={price}
               onBookmark={noop}
-              onBookRoom={noop}
+              onBookRoom={bookRoom}
             />
           )
         })}

@@ -1,9 +1,21 @@
 import { createStackNavigator, StackScreenProps } from '@react-navigation/stack'
 import React from 'react'
-import { Image, Text, TouchableOpacity } from 'react-native'
+import {
+  Image,
+  Text,
+  TouchableOpacity,
+  ImageBackground,
+  ViewStyle,
+  StyleProp,
+  GestureResponderEvent,
+} from 'react-native'
+import { hasNotch } from 'react-native-device-info'
 import { Index } from './stacks/index'
 import { TopHotels } from './stacks/top-hotels'
-import chevronLeft from '../../../assets/chevron-left.png'
+import { Book } from '../book'
+import chevronLeftDark from '../../../assets/chevron-left-dark.png'
+import chevronLeftLight from '../../../assets/chevron-left-light.png'
+import pic from '../../../assets/book-park-plaza.png'
 
 const Stack = createStackNavigator()
 
@@ -16,7 +28,38 @@ export function Explore({ navigation }: StackScreenProps<any>) {
         component={TopHotels}
         options={{
           headerLeft: () => {
-            return <Back onPress={() => navigation.navigate('Index')} />
+            return (
+              <Back
+                mode="dark"
+                style={{ marginLeft: 0, marginTop: 0 }}
+                onPress={() => navigation.navigate('Index')}
+              />
+            )
+          },
+        }}
+      />
+      <Stack.Screen
+        name="Book"
+        component={Book}
+        options={{
+          header: () => {
+            return (
+              <ImageBackground
+                source={pic}
+                style={{
+                  width: '100%',
+                  height: 267,
+                  flexDirection: 'row',
+                  alignItems: 'flex-start',
+                }}
+              >
+                <Back
+                  mode="light"
+                  style={{ marginLeft: 0, marginTop: hasNotch() ? 46 : 12 }}
+                  onPress={() => navigation.navigate('TopHotels')}
+                />
+              </ImageBackground>
+            )
           },
         }}
       />
@@ -24,11 +67,34 @@ export function Explore({ navigation }: StackScreenProps<any>) {
   )
 }
 
-function Back(props) {
-  const { onPress } = props
+function BackBase(props: BackPropType) {
+  const { onPress, style, mode } = props
   return (
-    <TouchableOpacity onPress={onPress}>
-      <Image source={chevronLeft} style={{ width: 10, height: 19 }} />
+    <TouchableOpacity style={style} onPress={onPress}>
+      <Image
+        source={mode == 'light' ? chevronLeftLight : chevronLeftDark}
+        style={
+          mode == 'light'
+            ? { width: 14, height: 26.5 }
+            : { width: 10, height: 19 }
+        }
+      />
     </TouchableOpacity>
   )
+}
+
+function Back(props: BackPropType) {
+  let { style } = props
+  const { mode, onPress } = props
+  style = [
+    { width: 40, height: 40, alignItems: 'center', justifyContent: 'center' },
+    style,
+  ]
+  return <BackBase mode={mode} style={style} onPress={onPress} />
+}
+
+interface BackPropType {
+  style?: StyleProp<ViewStyle>
+  mode: 'light' | 'dark'
+  onPress?: (event: GestureResponderEvent) => void
 }
