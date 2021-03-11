@@ -7,18 +7,51 @@ import {
   StyleSheet,
   ImageBackground,
   TouchableOpacity,
-  Button,
 } from 'react-native'
 import useToggle from '../../../../hooks/useToggle'
-import pic from '../../../../../assets/parkPlaza.png'
+import hotel1 from '../../../../../assets/parkPlaza.png'
+import hotel2 from '../../../../../assets/SarovarPortico.png'
+import hotel3 from '../../../../../assets/TajWestside.png'
 import thumbup from '../../../../../assets/thumbup.png'
 import currency from '../../../../../assets/currency-white.png'
 import { BigCurrency } from '../../../../components/card'
 import bookmark from '../../../../../assets/bookmark.png'
 import bookmarkWhite from '../../../../../assets/bookmark-white.png'
 
+const hotelList = [
+  {
+    id: 'saro',
+    name: 'Sarovar Portico',
+    star: '4',
+    percent: '96',
+    price: 4999,
+    checked: false,
+    image: hotel1,
+  },
+  {
+    id: 'park',
+    name: 'Park Plaza',
+    star: '4',
+    percent: '90',
+    price: 6999,
+    checked: true,
+    image: hotel2,
+  },
+  {
+    id: 'taj',
+    name: 'Taj Westside',
+    star: '5',
+    percent: '96',
+    price: 6999,
+    checked: true,
+    image: hotel3,
+  },
+]
+
 export function TopHotels() {
   const [flag, toggleFlag] = useToggle(false)
+  const [list, setList] = useState(hotelList)
+  function noop(id: string) {}
   return (
     <ScrollView>
       <View
@@ -31,42 +64,75 @@ export function TopHotels() {
           paddingBottom: 40,
         }}
       >
-        <View style={styles.container}>
-          <ImageBackground source={pic} style={styles.image}>
-            <View nativeID="todo" style={styles.innerContainer}>
-              <View>
-                <Text style={styles.title}>Sarovar Portico</Text>
-                <View style={{ flexDirection: 'row' }}>
-                  <Text style={styles.desc}>4 star hotel</Text>
-                  <Text style={[styles.desc, styles.dot]}>•</Text>
-                  <Text style={[styles.desc, styles.percent]}>96%</Text>
-                  <Image
-                    source={thumbup}
-                    style={{ width: 13.63, height: 12.66 }}
-                  />
-                </View>
-              </View>
-              <View style={styles.price}>
-                <BigCurrency
-                  isCut={false}
-                  color="#fff"
-                  currencyPhoto={currency}
-                >
-                  4999
-                </BigCurrency>
-                <Text style={styles.desc}>per night</Text>
-              </View>
-            </View>
-          </ImageBackground>
-          <View style={styles.ctaContainer}>
-            <BookmarkButton checked={flag} onPress={toggleFlag} />
-            <Text style={styles.cta} onPress={() => {}}>
-              Book Now
-            </Text>
-          </View>
-        </View>
+        {list.map((u, index) => {
+          const { checked, image, id, star, percent, price } = u
+          return (
+            <Card
+              style={{ marginTop: index === 0 ? 0 : 13 }}
+              key={id}
+              checked={checked}
+              image={image}
+              star={star}
+              percent={percent}
+              price={price}
+              onBookmark={noop}
+              onBookRoom={noop}
+            />
+          )
+        })}
       </View>
     </ScrollView>
+  )
+}
+
+function Card(props: {
+  style?
+  checked: boolean
+  star
+  percent
+  price
+  image
+  onBookmark
+  onBookRoom
+}) {
+  const {
+    style,
+    checked,
+    image,
+    star,
+    percent,
+    price,
+    onBookmark,
+    onBookRoom,
+  } = props
+  return (
+    <View style={[styles.container, style]}>
+      <ImageBackground source={image} style={styles.image}>
+        <View nativeID="todo" style={styles.innerContainer}>
+          <View>
+            <Text style={styles.title}>Sarovar Portico</Text>
+            <View style={{ flexDirection: 'row' }}>
+              <Text style={styles.desc}>{star} star hotel</Text>
+              <Text style={[styles.desc, styles.dot]}>•</Text>
+              <Text style={[styles.desc, styles.percent]}>{percent}%</Text>
+              <Image source={thumbup} style={{ width: 13.63, height: 12.66 }} />
+            </View>
+          </View>
+          <View style={styles.price}>
+            <BigCurrency isCut={false} color="#fff" currencyPhoto={currency}>
+              {price}
+            </BigCurrency>
+            <Text style={styles.desc}>per night</Text>
+          </View>
+        </View>
+      </ImageBackground>
+      <View style={styles.ctaContainer}>
+        <BookmarkButton checked={checked} onPress={onBookmark} />
+        <Text style={styles.cta} onPress={onBookRoom}>
+          Book Now
+        </Text>
+      </View>
+    </View>
   )
 }
 
@@ -139,7 +205,8 @@ const styles = StyleSheet.create({
   ctaContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 6,
+    padding: 12,
+    paddingLeft: 6,
   },
   cta: {
     borderRadius: 4,
