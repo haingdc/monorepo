@@ -34,6 +34,7 @@
   },
   "devDependencies": {
     "@types/ramda": "^0.27.38",
+    "@types/react-native-read-more-text": "^1.0.0",
     "@types/react-native-snap-carousel": "^3.8.2"
   }
 }

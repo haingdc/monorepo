@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import ReadMore from 'react-native-read-more-text'
 import { SafeAreaViewVisualizer } from '../../DataView'
+import { ReadMoreButton } from '../../components/button3-read-more'
 
 export class Book extends React.Component {
   // eslint-disable-next-line react/sort-comp
@@ -9,19 +10,34 @@ export class Book extends React.Component {
     return (
       <SafeAreaViewVisualizer>
         <View style={styles.container}>
-          <View>
-            <Text>Park Plaza</Text>
-            <Text>Most viewed</Text>
+          <View style={styles.InnerContainer1}>
+            <Text style={styles.name}>Park Plaza</Text>
+            <Text style={styles.mostView}>Most viewed</Text>
           </View>
-          <View>
-            <Text>Marathalli, Bangalore -</Text>
-            <Text>Show in Map</Text>
+          <View style={styles.InnerContainer1}>
+            <Text style={styles.address}>Marathalli, Bangalore</Text>
+            <Text style={styles.line}>-</Text>
+            <Text style={styles.showMap}>Show in Map</Text>
           </View>
           <View style={styles.card}>
             <ReadMore
-              numberOfLines={2}
+              numberOfLines={4}
               // eslint-disable-next-line no-underscore-dangle
               onReady={this._handleTextReady}
+              renderRevealedFooter={(cb) => (
+                <ReadMoreButton
+                  style={{ marginTop: 2 }}
+                  isMore={false}
+                  onPress={cb}
+                >
+                  Read Less
+                </ReadMoreButton>
+              )}
+              renderTruncatedFooter={(cb) => (
+                <ReadMoreButton style={{ marginTop: 2 }} isMore onPress={cb}>
+                  Read More
+                </ReadMoreButton>
+              )}
             >
               <Text style={styles.cardText}>
                 Nestled in the heart of Bengaluru, the Park Plaza provides an
@@ -46,18 +62,39 @@ export class Book extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // alignItems: 'center',
-    // justifyContent: 'center',
+    padding: 20,
   },
   card: {
-    marginHorizontal: 10,
-    padding: 10,
-    borderRadius: 3,
-    borderColor: 'rgba(0,0,0,0.1)',
-    borderWidth: 1,
-    backgroundColor: '#fff',
+    marginVertical: 11,
   },
   cardText: {
     fontSize: 14,
+  },
+  InnerContainer1: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  name: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    lineHeight: 32,
+  },
+  mostView: {
+    fontSize: 8,
+    lineHeight: 10,
+    color: '#EF4339',
+    marginLeft: 6,
+  },
+  address: {
+    fontSize: 14,
+    lineHeight: 16,
+  },
+  showMap: {
+    fontSize: 12,
+    fontWeight: '100',
+    lineHeight: 15,
+  },
+  line: {
+    marginHorizontal: 4,
   },
 })
