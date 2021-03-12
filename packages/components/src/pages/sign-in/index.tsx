@@ -1,22 +1,19 @@
 import React, { useState } from 'react'
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-} from 'react-native'
-import { Button } from "../../components/button"
+import { View, Text, StyleSheet, Image } from 'react-native'
+import { StackScreenProps } from '@react-navigation/stack'
+import { Button } from '../../components/button'
+import { AuthContext } from '../../contexts/auth'
+import { InputApp } from '../../components/input'
 import authenPic from '../../../assets/authenPic.png'
 import mail from '../../../assets/mail.png'
 import lock from '../../../assets/lock.png'
-import { AuthContext } from '../../contexts/auth'
-import { InputApp } from '../../components/input'
 
-export function SignIn({ navigation }) {
-  const { signIn } = React.useContext(AuthContext);
+export function SignIn(props: StackScreenProps<any>) {
+  const { navigation } = props
+  const { signIn } = React.useContext(AuthContext)
 
-  const [ password, setPassword] = useState('canden')
-  const [ address , setAddress ] = useState('kiran123@gmail.com')
+  const [password, setPassword] = useState('canden')
+  const [address, setAddress] = useState('kiran123@gmail.com')
   return (
     <View
       style={{
@@ -47,7 +44,13 @@ export function SignIn({ navigation }) {
         <Text style={styles.forgot}>Forgot Password?</Text>
         <Text style={styles.description}>
           Don&apos;t have account?
-          <Text style={styles.link} onPress={() => navigation.navigate('SignUp')}> Register </Text>
+          <Text
+            style={styles.link}
+            onPress={() => navigation.navigate('SignUp')}
+          >
+            {' '}
+            Register{' '}
+          </Text>
           here.
         </Text>
       </View>

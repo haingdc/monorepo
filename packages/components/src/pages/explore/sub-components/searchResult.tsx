@@ -1,16 +1,8 @@
-import React, { useRef } from 'react'
-import {
-  StyleSheet,
-  Text,
-  ScrollView,
-  View,
-  Image,
-  Platform,
-} from 'react-native'
-import { BlurView } from 'expo-blur'
+import React from 'react'
+import { StyleSheet, Text, View, Image, Platform } from 'react-native'
 import { ProductList } from '../../../containers/product-list'
+import { ViewButton } from '../../../components/button2-view'
 import cursor from '../../../../assets/cursor.png'
-import chevron from '../../../../assets/chevron-right.png'
 import cardPic1 from '../../../../assets/card_s_taj-vista.png'
 import cardPic2 from '../../../../assets/card_s_sheraton.png'
 
@@ -57,53 +49,6 @@ export function SearchResult() {
   )
 }
 
-function ViewButton(props) {
-  const blurRef = useRef({
-    tint: Platform.OS == 'ios' ? 'light' : 'default',
-    intensity: Platform.OS == 'ios' ? 10 : 100,
-  })
-  const style = StyleSheet.compose(viewButtonStyles.container, props.style)
-  return (
-    <View style={style}>
-      <BlurView
-        tint={blurRef.current.tint}
-        style={viewButtonStyles.blurview}
-        intensity={blurRef.current.intensity}
-      >
-        <Text style={viewButtonStyles.text}>View</Text>
-        <Image style={viewButtonStyles.image} source={chevron} />
-      </BlurView>
-    </View>
-  )
-}
-
-const viewButtonStyles = StyleSheet.create({
-  container: {
-    borderRadius: 4,
-    overflow: 'hidden',
-  },
-  blurview: {
-    flexDirection: 'row',
-    paddingLeft: 26,
-    paddingRight: 18,
-    paddingVertical: 9,
-    alignItems: 'center',
-    width: '100%',
-    height: '100%',
-  },
-  text: {
-    color: '#fff',
-    fontSize: 16,
-    lineHeight: 19,
-    // letterSpacing: 1.1,
-    marginRight: 9,
-  },
-  image: {
-    width: 8,
-    height: 14,
-  },
-})
-
 function Banner() {
   return (
     <View style={bannerStyles.container}>
@@ -113,7 +58,13 @@ function Banner() {
         <Text style={bannerStyles.text}>your favorite and relaxing</Text>
         <Text style={bannerStyles.text}>stay.</Text>
       </View>
-      <ViewButton style={bannerStyles.cta} />
+      <ViewButton
+        style={bannerStyles.cta}
+        tint={Platform.OS == 'ios' ? 'light' : 'default'}
+        intensity={Platform.OS == 'ios' ? 10 : 100}
+      >
+        View
+      </ViewButton>
     </View>
   )
 }

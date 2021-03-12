@@ -2,7 +2,7 @@ import { createStackNavigator, StackScreenProps } from '@react-navigation/stack'
 import React from 'react'
 import {
   Image,
-  Text,
+  StyleSheet,
   TouchableOpacity,
   ImageBackground,
   ViewStyle,
@@ -10,6 +10,7 @@ import {
   GestureResponderEvent,
 } from 'react-native'
 import { hasNotch } from 'react-native-device-info'
+import { ViewButton } from '../../components/button2-view'
 import { Index } from './stacks/index'
 import { TopHotels } from './stacks/top-hotels'
 import { Book } from '../book'
@@ -44,20 +45,13 @@ export function Explore({ navigation }: StackScreenProps<any>) {
         options={{
           header: () => {
             return (
-              <ImageBackground
-                source={pic}
-                style={{
-                  width: '100%',
-                  height: 267,
-                  flexDirection: 'row',
-                  alignItems: 'flex-start',
-                }}
-              >
+              <ImageBackground source={pic} style={headerStyles.imageBgr}>
                 <Back
                   mode="light"
                   style={{ marginLeft: 0, marginTop: hasNotch() ? 46 : 12 }}
                   onPress={() => navigation.navigate('TopHotels')}
                 />
+                <ViewButton style={headerStyles.view}>Gallery</ViewButton>
               </ImageBackground>
             )
           },
@@ -66,6 +60,26 @@ export function Explore({ navigation }: StackScreenProps<any>) {
     </Stack.Navigator>
   )
 }
+
+const headerStyles = StyleSheet.create({
+  imageBgr: {
+    width: '100%',
+    height: 267,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    borderBottomLeftRadius: 3,
+    borderBottomRightRadius: 3,
+    overflow: 'hidden',
+  },
+  view: {
+    right: 0,
+    bottom: 0,
+    position: 'absolute',
+    backgroundColor: '#EF4339',
+    borderTopRightRadius: 0,
+    borderBottomLeftRadius: 0,
+  },
+})
 
 function BackBase(props: BackPropType) {
   const { onPress, style, mode } = props

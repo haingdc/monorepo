@@ -38,7 +38,7 @@ export function SafeAreaViewVisualizer({
       >
         {children}
       </View>
-      <View
+      {/* <View
         style={{
           position: 'absolute',
           top: insets.top + 16,
@@ -53,7 +53,7 @@ export function SafeAreaViewVisualizer({
           Insets
         </Text>
         <DataView data={insets} />
-      </View>
+      </View> */}
     </SafeAreaView>
   )
 }

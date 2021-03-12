@@ -9,6 +9,14 @@ export class Book extends React.Component {
     return (
       <SafeAreaViewVisualizer>
         <View style={styles.container}>
+          <View>
+            <Text>Park Plaza</Text>
+            <Text>Most viewed</Text>
+          </View>
+          <View>
+            <Text>Marathalli, Bangalore -</Text>
+            <Text>Show in Map</Text>
+          </View>
           <View style={styles.card}>
             <ReadMore
               numberOfLines={2}
@@ -16,13 +24,12 @@ export class Book extends React.Component {
               onReady={this._handleTextReady}
             >
               <Text style={styles.cardText}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum
+                Nestled in the heart of Bengaluru, the Park Plaza provides an
+                upscale home base with easy access to Bengaluru&rsquo;s Central
+                Business District. Our stylish hotel is conveniently located
+                within a 5km radius of business and entertainment hot spots and
+                approx. 40-minute drive from Kempegowda International Aiport
+                (BLR).
               </Text>
             </ReadMore>
           </View>
@@ -39,7 +46,6 @@ export class Book extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.05)',
     // alignItems: 'center',
     // justifyContent: 'center',
   },
