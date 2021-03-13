@@ -2,10 +2,6 @@ import React, { useReducer, useState } from 'react'
 import { View, StyleSheet, Image, ScrollView } from 'react-native'
 import { StackScreenProps } from '@react-navigation/stack'
 import { Button, Button2 } from '../../../../components/button'
-import {
-  ProductList,
-  ProductListSkeleton,
-} from '../../../../containers/product-list'
 import { getRandomFloat } from '../../../../utils'
 import { SearchResult } from '../../sub-components/searchResult'
 import calendar from '../../../../../assets/calendar.png'
@@ -15,6 +11,10 @@ import group from '../../../../../assets/group.png'
 import { InputApp } from '../../../../components/input'
 import cardPic1 from '../../../../../assets/card_s_taj-vista.png'
 import cardPic2 from '../../../../../assets/card_s_sheraton.png'
+import {
+  ProductList,
+  ProductListSkeleton,
+} from '../../../../containers/product-list'
 
 export const list = [
   { title: 'Sheraton Grand', source: cardPic1, price: '5999' },
@@ -117,6 +117,7 @@ export function Index(props: StackScreenProps<any>) {
             <Image source={drop} style={{ width: 15, height: 20 }} />
           </Button2>
         </View>
+
         {state.status == 'initial' ? (
           <>
             <ProductList
@@ -138,6 +139,7 @@ export function Index(props: StackScreenProps<any>) {
             </ProductList>
           </>
         ) : undefined}
+
         {state.status == 'loading' ? (
           <>
             <ProductListSkeleton data={list} onViewAll={() => {}}>
@@ -152,6 +154,7 @@ export function Index(props: StackScreenProps<any>) {
             </ProductListSkeleton>
           </>
         ) : undefined}
+
         {state.status == 'fetchingSuccess' ? <SearchResult /> : undefined}
       </View>
     </ScrollView>
