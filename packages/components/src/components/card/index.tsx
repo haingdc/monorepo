@@ -6,9 +6,7 @@ import {
   Image,
   ImageSourcePropType,
 } from 'react-native'
-import blackSign from '../../../assets/currency.png'
-import redSign from '../../../assets/currency-discount.png'
-import { Currency } from '../text-currency'
+import { blackSign, Currency, redSign } from '../text-currency'
 
 export function HotelSmallCard(props: HotelSmallCardPropType) {
   const {
@@ -27,7 +25,7 @@ export function HotelSmallCard(props: HotelSmallCardPropType) {
         <View style={{ flexDirection: 'row' }}>
           {isDiscount ? (
             <Currency
-              currencyPhoto={blackSign}
+              photo={blackSign}
               isCut
               color="#000"
               style={{ marginRight: 10 }}
@@ -36,7 +34,7 @@ export function HotelSmallCard(props: HotelSmallCardPropType) {
             </Currency>
           ) : undefined}
           <Currency
-            currencyPhoto={isDiscount ? redSign : blackSign}
+            photo={isDiscount ? redSign : blackSign}
             isCut={false}
             color={isDiscount ? '#EF4B41' : '#000'}
           >

@@ -8,13 +8,15 @@ import {
   ViewStyle,
   StyleProp,
 } from 'react-native'
+import blackSign from '../../../assets/currency.png'
+import redSign from '../../../assets/currency-discount.png'
 
 export function Currency(props: CurrencyTypeProp) {
-  const { children, style, color, isCut, currencyPhoto } = props
+  const { children, style, color, isCut, photo } = props
   return (
     <View style={[style, styles.container]}>
       {isCut ? <View style={styles.line} /> : undefined}
-      <Image source={currencyPhoto} style={styles.sign} />
+      <Image source={photo} style={styles.sign} />
       <Text style={{ color }}> {children} </Text>
     </View>
   )
@@ -42,10 +44,10 @@ const styles = StyleSheet.create({
 })
 
 export function BigCurrency(props: CurrencyTypeProp) {
-  const { children, style, color, currencyPhoto } = props
+  const { children, style, color, photo } = props
   return (
     <View style={[style, stylesBig.currency]}>
-      <Image source={currencyPhoto} style={stylesBig.currencySign} />
+      <Image source={photo} style={stylesBig.currencySign} />
       <Text style={[stylesBig.text, { color }]}> {children} </Text>
     </View>
   )
@@ -70,5 +72,7 @@ interface CurrencyTypeProp extends PropsWithChildren<any> {
   isCut?: boolean
   style?: StyleProp<ViewStyle>
   color: '#EF4B41' | '#000' | '#fff'
-  currencyPhoto: ImageSourcePropType
+  photo: ImageSourcePropType
 }
+
+export { redSign, blackSign }

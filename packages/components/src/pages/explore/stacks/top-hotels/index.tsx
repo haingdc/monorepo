@@ -125,7 +125,7 @@ function Card(props: {
             </View>
           </View>
           <View style={styles.price}>
-            <BigCurrency isCut={false} color="#fff" currencyPhoto={currency}>
+            <BigCurrency isCut={false} color="#fff" photo={currency}>
               {price}
             </BigCurrency>
             <Text style={styles.desc}>per night</Text>
