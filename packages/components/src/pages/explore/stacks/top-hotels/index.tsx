@@ -15,7 +15,7 @@ import hotel2 from '../../../../../assets/SarovarPortico.png'
 import hotel3 from '../../../../../assets/TajWestside.png'
 import thumbup from '../../../../../assets/thumbup.png'
 import currency from '../../../../../assets/currency-white.png'
-import { BigCurrency } from '../../../../components/card'
+import { BigCurrency } from '../../../../components/text-currency'
 import bookmark from '../../../../../assets/bookmark.png'
 import bookmarkWhite from '../../../../../assets/bookmark-white.png'
 

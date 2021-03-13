@@ -1,10 +1,10 @@
 import React from 'react'
 import { StyleSheet, Text, View, Image, Platform } from 'react-native'
-import { ProductList } from '../../../containers/product-list'
 import { ViewButton } from '../../../components/button2-view'
 import cursor from '../../../../assets/cursor.png'
 import cardPic1 from '../../../../assets/card_s_taj-vista.png'
 import cardPic2 from '../../../../assets/card_s_sheraton.png'
+import { ProductList } from '../../../containers/product-list'
 
 export const list = [
   {

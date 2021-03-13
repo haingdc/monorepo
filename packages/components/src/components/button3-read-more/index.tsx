@@ -38,7 +38,7 @@ const styleReadMore = StyleSheet.create({
   text: {
     color: '#EF4339',
     fontSize: 12,
-    fontHeight: 14,
+    lineHeight: 14,
   },
 })
 
