@@ -9,6 +9,7 @@ import phone from '../../../assets/phone.png'
 import { blackSign, Currency } from '../../components/text-currency'
 import { Star } from '../../components/stars'
 import { Avatars } from '../../components/avatars'
+import { Amenity } from '../../components/amenity'
 
 export function Book(props) {
   return (
@@ -82,6 +83,14 @@ export function Book(props) {
           <TextCell label="Reviews">
             <Avatars people={[]} />
           </TextCell>
+        </View>
+        <View style={styles.innerContainer1}>
+          <Amenity type="wifi" />
+          <Amenity type="breakfast" />
+          <Amenity type="pets" />
+          <Amenity type="bar" />
+          <Amenity type="pool" />
+          <Amenity type="more" />
         </View>
       </View>
     </SafeAreaViewVisualizer>
