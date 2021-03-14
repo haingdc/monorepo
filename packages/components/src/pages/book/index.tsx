@@ -8,6 +8,7 @@ import mail from '../../../assets/mail2.png'
 import phone from '../../../assets/phone.png'
 import { blackSign, Currency } from '../../components/text-currency'
 import { Star } from '../../components/stars'
+import { Avatars } from '../../components/avatars'
 
 export function Book(props) {
   return (
@@ -79,9 +80,7 @@ export function Book(props) {
             <Star percent={25} />
           </TextCell>
           <TextCell label="Reviews">
-            <Currency color="#000" photo={blackSign}>
-              6999
-            </Currency>
+            <Avatars people={[]} />
           </TextCell>
         </View>
       </View>
