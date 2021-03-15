@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
+import { StyleSheet, Image, Text, View } from 'react-native'
 import ReadMore from 'react-native-read-more-text'
 import { SafeAreaViewVisualizer } from '../../DataView'
 import { ReadMoreButton } from '../../components/button3-read-more'
 import { TextCell, Texticon } from '../../components/text-icon'
+import { Button, Button2 } from '../../components/button'
 import mail from '../../../assets/mail2.png'
 import phone from '../../../assets/phone.png'
 import { blackSign, Currency } from '../../components/text-currency'
 import { Star } from '../../components/stars'
 import { Avatars } from '../../components/avatars'
 import { Amenity } from '../../components/amenity'
+import bookmark from '../../../assets/bookmark-white.png'
 
 export function Book(props) {
   return (
@@ -83,6 +85,12 @@ export function Book(props) {
           <Amenity type="pool">Pool</Amenity>
           <Amenity type="more">More</Amenity>
         </View>
+      </View>
+      <View style={{ flexDirection: 'row', marginTop: 0 }}>
+        <Button onPress={() => {}}>Book Now</Button>
+        <Button2 style={{ width: 45, height: 40, marginLeft: 10 }}>
+          <Image source={bookmark} style={{ width: 15, height: 20 }} />
+        </Button2>
       </View>
     </SafeAreaViewVisualizer>
   )
