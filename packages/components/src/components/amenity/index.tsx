@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 import {
   View,
+  Text,
   Image,
   ImageSourcePropType,
   StyleSheet,
   StyleProp,
   ViewStyle,
+  ImageURISource,
 } from 'react-native'
 import wifi from '../../../assets/amenity-wifi.png'
 import breakfast from '../../../assets/amenity-breakfast.png'
@@ -17,7 +19,7 @@ import more from '../../../assets/amenity-more.png'
 function AmenityBase(props: AmenityBasePropType) {
   const { source, width, height } = props
   return (
-    <View style={baseStyles.container}>
+    <View style={[baseStyles.container, baseStyles.shadow]}>
       <Image source={source} style={{ width, height }} />
     </View>
   )
@@ -29,7 +31,12 @@ const baseStyles = StyleSheet.create({
     height: 30,
     justifyContent: 'center',
     alignItems: 'center',
+    borderRadius: 4,
+  },
+  shadow: {
+    overflow: 'visible',
     shadowColor: '#000',
+    backgroundColor: '#fff',
     shadowOffset: {
       width: 0,
       height: 2,
@@ -47,24 +54,37 @@ interface AmenityBasePropType {
 }
 
 export function Amenity(props: PropType) {
-  const { type, style } = props
+  const { children, type, style } = props
+  const [source, width, height] = sources[type]
   return (
-    <View style={style}>
-      <AmenityBase source={sources[type]} width={22} height={16} />
+    <View style={[styles.container, style]}>
+      <AmenityBase source={source} width={width} height={height} />
+      <Text style={styles.text}>{children}</Text>
     </View>
   )
 }
 
-interface PropType {
+interface PropType extends PropsWithChildren<any> {
   type: 'wifi' | 'breakfast' | 'pets' | 'bar' | 'pool' | 'more'
   style?: StyleProp<ViewStyle>
 }
 
-const sources = {
-  wifi,
-  breakfast,
-  pets,
-  bar,
-  pool,
-  more,
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+  },
+  text: {
+    marginTop: 7,
+    fontSize: 10,
+    lineHeight: 10,
+  },
+})
+
+const sources: Record<string, [ImageURISource, number, number]> = {
+  wifi: [wifi, 22, 16],
+  breakfast: [breakfast, 20, 18],
+  pets: [pets, 20, 19],
+  bar: [bar, 11, 20],
+  pool: [pool, 20, 18],
+  more: [more, 20, 5],
 }

@@ -53,12 +53,7 @@ export function Book(props) {
             </Text>
           </ReadMore>
         </View>
-        <View
-          style={[
-            styles.innerContainer1,
-            { marginTop: 14, justifyContent: 'space-between' },
-          ]}
-        >
+        <View style={[styles.innerContainer1, { marginTop: 14 }]}>
           <Texticon source={mail} imgWidth={9.88} imgHeight={9.88}>
             parkplaza@gmail.com
           </Texticon>
@@ -66,12 +61,7 @@ export function Book(props) {
             +91-8729838721
           </Texticon>
         </View>
-        <View
-          style={[
-            styles.innerContainer1,
-            { marginTop: 9, justifyContent: 'space-between' },
-          ]}
-        >
+        <View style={[styles.innerContainer1, { marginTop: 9 }]}>
           <TextCell label="Price">
             <Currency color="#000" photo={blackSign}>
               6999
@@ -84,13 +74,14 @@ export function Book(props) {
             <Avatars people={[]} />
           </TextCell>
         </View>
-        <View style={styles.innerContainer1}>
-          <Amenity type="wifi" />
-          <Amenity type="breakfast" />
-          <Amenity type="pets" />
-          <Amenity type="bar" />
-          <Amenity type="pool" />
-          <Amenity type="more" />
+        <Text style={styles.amenitiesLabel}>Amenities</Text>
+        <View style={[styles.innerContainer1, { marginTop: 9 }]}>
+          <Amenity type="wifi">Free WiFi</Amenity>
+          <Amenity type="breakfast">Breakfast</Amenity>
+          <Amenity type="pets">Pets</Amenity>
+          <Amenity type="bar">Bar</Amenity>
+          <Amenity type="pool">Pool</Amenity>
+          <Amenity type="more">More</Amenity>
         </View>
       </View>
     </SafeAreaViewVisualizer>
@@ -115,6 +106,7 @@ const styles = StyleSheet.create({
   innerContainer1: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
   },
   name: {
     fontSize: 20,
@@ -138,5 +130,11 @@ const styles = StyleSheet.create({
   },
   line: {
     marginHorizontal: 4,
+  },
+  amenitiesLabel: {
+    marginTop: 20,
+    fontSize: 10,
+    lineHeight: 20,
+    fontWeight: '700',
   },
 })
