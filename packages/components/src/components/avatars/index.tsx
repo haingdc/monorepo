@@ -19,8 +19,8 @@ function Avatar(props) {
       <Image source={source} style={avatarStyles.image} />
       {isOverlay
         ? [
-            <Image source={overlay} style={avatarStyles.overlay} />,
-            <View style={avatarStyles.textWrapper}>
+            <Image key="image" source={overlay} style={avatarStyles.overlay} />,
+            <View key="text" style={avatarStyles.textWrapper}>
               <Text style={avatarStyles.text}>+25</Text>
             </View>,
           ]
