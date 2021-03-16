@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Image, Text, View } from 'react-native'
+import { StyleSheet, Image, Text, View, ScrollView } from 'react-native'
 import ReadMore from 'react-native-read-more-text'
 import { SafeAreaViewVisualizer } from '../../DataView'
 import { ReadMoreButton } from '../../components/button3-read-more'
@@ -16,82 +16,84 @@ import bookmark from '../../../assets/bookmark-white.png'
 export function Book(props) {
   return (
     <SafeAreaViewVisualizer>
-      <View style={styles.container}>
-        <View style={styles.innerContainer1}>
-          <Text style={styles.name}>Park Plaza</Text>
-          <Text style={styles.mostView}>Most viewed</Text>
+      <ScrollView>
+        <View style={styles.container}>
+          <View style={styles.innerContainer1}>
+            <Text style={styles.name}>Park Plaza</Text>
+            <Text style={styles.mostView}>Most viewed</Text>
+          </View>
+          <View style={styles.innerContainer1}>
+            <Text style={styles.address}>Marathalli, Bangalore</Text>
+            <Text style={styles.line}>-</Text>
+            <Text style={styles.showMap}>Show in Map</Text>
+          </View>
+          <View style={styles.readMoreWrapper}>
+            <ReadMore
+              numberOfLines={4}
+              onReady={handleTextReady}
+              renderRevealedFooter={(cb) => (
+                <ReadMoreButton
+                  style={{ marginTop: 2 }}
+                  isMore={false}
+                  onPress={cb}
+                >
+                  Read Less
+                </ReadMoreButton>
+              )}
+              renderTruncatedFooter={(cb) => (
+                <ReadMoreButton style={{ marginTop: 2 }} isMore onPress={cb}>
+                  Read More
+                </ReadMoreButton>
+              )}
+            >
+              <Text style={styles.cardText}>
+                Nestled in the heart of Bengaluru, the Park Plaza provides an
+                upscale home base with easy access to Bengaluru&rsquo;s Central
+                Business District. Our stylish hotel is conveniently located
+                within a 5km radius of business and entertainment hot spots and
+                approx. 40-minute drive from Kempegowda International Aiport
+                (BLR).
+              </Text>
+            </ReadMore>
+          </View>
+          <View style={[styles.innerContainer1, { marginTop: 14 }]}>
+            <Texticon source={mail} imgWidth={9.88} imgHeight={9.88}>
+              parkplaza@gmail.com
+            </Texticon>
+            <Texticon source={phone} imgWidth={9.88} imgHeight={9.88}>
+              +91-8729838721
+            </Texticon>
+          </View>
+          <View style={[styles.innerContainer1, { marginTop: 9 }]}>
+            <TextCell label="Price">
+              <Currency color="#000" photo={blackSign}>
+                6999
+              </Currency>
+            </TextCell>
+            <TextCell label="Ratings">
+              <Star percent={25} />
+            </TextCell>
+            <TextCell label="Reviews">
+              <Avatars people={[]} />
+            </TextCell>
+          </View>
+          <Text style={styles.amenitiesLabel}>Amenities</Text>
+          <View style={[styles.innerContainer1, { marginTop: 9 }]}>
+            <Amenity type="wifi">Free WiFi</Amenity>
+            <Amenity type="breakfast">Breakfast</Amenity>
+            <Amenity type="pets">Pets</Amenity>
+            <Amenity type="bar">Bar</Amenity>
+            <Amenity type="pool">Pool</Amenity>
+            <Amenity type="more">More</Amenity>
+          </View>
+          <View style={[styles.innerContainer1, { marginVertical: 18 }]}>
+            <Button onPress={() => {}}>Book Now</Button>
+            <Button2 style={{ width: 45, height: 40, marginLeft: 10 }}>
+              <Image source={bookmark} style={{ width: 15, height: 20 }} />
+            </Button2>
+          </View>
         </View>
-        <View style={styles.innerContainer1}>
-          <Text style={styles.address}>Marathalli, Bangalore</Text>
-          <Text style={styles.line}>-</Text>
-          <Text style={styles.showMap}>Show in Map</Text>
-        </View>
-        <View style={styles.readMoreWrapper}>
-          <ReadMore
-            numberOfLines={4}
-            onReady={handleTextReady}
-            renderRevealedFooter={(cb) => (
-              <ReadMoreButton
-                style={{ marginTop: 2 }}
-                isMore={false}
-                onPress={cb}
-              >
-                Read Less
-              </ReadMoreButton>
-            )}
-            renderTruncatedFooter={(cb) => (
-              <ReadMoreButton style={{ marginTop: 2 }} isMore onPress={cb}>
-                Read More
-              </ReadMoreButton>
-            )}
-          >
-            <Text style={styles.cardText}>
-              Nestled in the heart of Bengaluru, the Park Plaza provides an
-              upscale home base with easy access to Bengaluru&rsquo;s Central
-              Business District. Our stylish hotel is conveniently located
-              within a 5km radius of business and entertainment hot spots and
-              approx. 40-minute drive from Kempegowda International Aiport
-              (BLR).
-            </Text>
-          </ReadMore>
-        </View>
-        <View style={[styles.innerContainer1, { marginTop: 14 }]}>
-          <Texticon source={mail} imgWidth={9.88} imgHeight={9.88}>
-            parkplaza@gmail.com
-          </Texticon>
-          <Texticon source={phone} imgWidth={9.88} imgHeight={9.88}>
-            +91-8729838721
-          </Texticon>
-        </View>
-        <View style={[styles.innerContainer1, { marginTop: 9 }]}>
-          <TextCell label="Price">
-            <Currency color="#000" photo={blackSign}>
-              6999
-            </Currency>
-          </TextCell>
-          <TextCell label="Ratings">
-            <Star percent={25} />
-          </TextCell>
-          <TextCell label="Reviews">
-            <Avatars people={[]} />
-          </TextCell>
-        </View>
-        <Text style={styles.amenitiesLabel}>Amenities</Text>
-        <View style={[styles.innerContainer1, { marginTop: 9 }]}>
-          <Amenity type="wifi">Free WiFi</Amenity>
-          <Amenity type="breakfast">Breakfast</Amenity>
-          <Amenity type="pets">Pets</Amenity>
-          <Amenity type="bar">Bar</Amenity>
-          <Amenity type="pool">Pool</Amenity>
-          <Amenity type="more">More</Amenity>
-        </View>
-      </View>
-      <View style={{ flexDirection: 'row', marginTop: 0 }}>
-        <Button onPress={() => {}}>Book Now</Button>
-        <Button2 style={{ width: 45, height: 40, marginLeft: 10 }}>
-          <Image source={bookmark} style={{ width: 15, height: 20 }} />
-        </Button2>
-      </View>
+      </ScrollView>
     </SafeAreaViewVisualizer>
   )
 
