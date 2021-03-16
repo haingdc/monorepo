@@ -131,7 +131,7 @@ export function Index(props: StackScreenProps<any>) {
             <ProductList
               data={list}
               onViewAll={() => {
-                navigation.navigate('TopHotels')
+                navigation.navigate('Book Details')
               }}
               style={{ marginVertical: 20, marginHorizontal: 20 }}
             >

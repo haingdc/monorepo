@@ -1,4 +1,8 @@
-import { createStackNavigator, StackScreenProps } from '@react-navigation/stack'
+import {
+  createStackNavigator,
+  StackHeaderProps,
+  StackScreenProps,
+} from '@react-navigation/stack'
 import React from 'react'
 import {
   Image,
@@ -17,6 +21,7 @@ import { Book } from '../book'
 import chevronLeftDark from '../../../assets/chevron-left-dark.png'
 import chevronLeftLight from '../../../assets/chevron-left-light.png'
 import pic from '../../../assets/book-park-plaza.png'
+import { BookingDetails } from '../book/stacks/details'
 
 const Stack = createStackNavigator()
 
@@ -43,9 +48,15 @@ export function Explore({ navigation }: StackScreenProps<any>) {
         name="Book"
         component={Book}
         options={{
-          header: () => {
+          header: (props: StackHeaderProps) => {
             return (
-              <ImageBackground source={pic} style={headerStyles.imageBgr}>
+              <ImageBackground
+                source={pic}
+                style={[
+                  headerStyles.imageBgr,
+                  { display: props.navigation.isFocused() ? 'flex' : 'none' },
+                ]}
+              >
                 <Back
                   mode="light"
                   style={{ marginLeft: 0, marginTop: hasNotch() ? 46 : 12 }}
@@ -53,6 +64,23 @@ export function Explore({ navigation }: StackScreenProps<any>) {
                 />
                 <ViewButton style={headerStyles.view}>Gallery</ViewButton>
               </ImageBackground>
+            )
+          },
+        }}
+      />
+      <Stack.Screen
+        name="Book Details"
+        component={BookingDetails}
+        options={{
+          header: () => {
+            return (
+              <Back
+                mode="light"
+                style={{ marginLeft: 0, marginTop: hasNotch() ? 46 : 12 }}
+                onPress={() => {
+                  navigation.navigate('Book')
+                }}
+              />
             )
           },
         }}

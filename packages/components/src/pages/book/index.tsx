@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, Image, Text, View, ScrollView } from 'react-native'
 import ReadMore from 'react-native-read-more-text'
+import { StackScreenProps } from '@react-navigation/stack'
 import { SafeAreaViewVisualizer } from '../../DataView'
 import { ReadMoreButton } from '../../components/button3-read-more'
 import { TextCell, Texticon } from '../../components/text-icon'
@@ -13,7 +14,8 @@ import { Avatars } from '../../components/avatars'
 import { Amenity } from '../../components/amenity'
 import bookmark from '../../../assets/bookmark-white.png'
 
-export function Book(props) {
+export function Book(props: StackScreenProps<any>) {
+  const { navigation } = props
   return (
     <SafeAreaViewVisualizer>
       <ScrollView>
@@ -87,7 +89,9 @@ export function Book(props) {
             <Amenity type="more">More</Amenity>
           </View>
           <View style={[styles.innerContainer1, { marginVertical: 18 }]}>
-            <Button onPress={() => {}}>Book Now</Button>
+            <Button onPress={() => navigation.push('Book Details')}>
+              Book Now
+            </Button>
             <Button2 style={{ width: 45, height: 40, marginLeft: 10 }}>
               <Image source={bookmark} style={{ width: 15, height: 20 }} />
             </Button2>
