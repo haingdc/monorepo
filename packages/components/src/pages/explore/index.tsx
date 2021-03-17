@@ -12,6 +12,8 @@ import {
   ViewStyle,
   StyleProp,
   GestureResponderEvent,
+  View,
+  Text,
 } from 'react-native'
 import { hasNotch } from 'react-native-device-info'
 import { ViewButton } from '../../components/button2-view'
@@ -72,15 +74,42 @@ export function Explore({ navigation }: StackScreenProps<any>) {
         name="Book Details"
         component={BookingDetails}
         options={{
-          header: () => {
+          header: (_props: StackHeaderProps) => {
             return (
-              <Back
-                mode="light"
-                style={{ marginLeft: 0, marginTop: hasNotch() ? 46 : 12 }}
-                onPress={() => {
-                  navigation.navigate('Book')
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  minHeight: 64,
+                  borderBottomColor: '#d8d8d8',
+                  borderBottomWidth: 1,
+                  paddingTop: hasNotch() ? 46 : 12,
+                  backgroundColor: '#fff',
+                  shadowColor: '#d8d8d8',
+                  shadowOpacity: 0.8,
+                  shadowRadius: 2,
+                  shadowOffset: {
+                    height: 1,
+                    width: 1,
+                  },
                 }}
-              />
+              >
+                <Back
+                  mode="light"
+                  onPress={() => {
+                    navigation.navigate('Book')
+                  }}
+                />
+                <Text
+                  style={{
+                    fontSize: 18,
+                  }}
+                >
+                  Booking
+                </Text>
+                <Text style={{ width: 40, height: 40 }} />
+              </View>
             )
           },
         }}
