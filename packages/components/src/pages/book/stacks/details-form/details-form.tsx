@@ -1,5 +1,11 @@
 import React, { useState } from 'react'
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native'
 import { Calendar } from 'react-native-calendars'
 import { StackScreenProps } from '@react-navigation/stack'
 import { Button } from '../../../../components/button'
@@ -84,6 +90,21 @@ export function BookingDetails(props: StackScreenProps<any>) {
               setVisible(false)
             }}
           >
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                borderColor: 'red',
+                borderWidth: 1,
+              }}
+            >
+              <TouchableOpacity>
+                <Text onPress={() => setVisible(false)}>Cancel</Text>
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Text onPress={() => setVisible(false)}>Done</Text>
+              </TouchableOpacity>
+            </View>
             <Calendar
               // Collection of dates that have to be colored in a special way. Default = {}
               markedDates={dates}
