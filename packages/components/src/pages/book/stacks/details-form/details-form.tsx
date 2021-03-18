@@ -14,6 +14,7 @@ import { BottomSheet } from './BottomSheet'
 export function BookingDetails(props: StackScreenProps<any>) {
   const { navigation } = props
   const [isVisible, setVisible] = useState(false)
+  const [dates, setDates] = useState<any>({})
   const [details, setDetails] = useState({
     name: '',
     contact: '',
@@ -85,24 +86,20 @@ export function BookingDetails(props: StackScreenProps<any>) {
           >
             <Calendar
               // Collection of dates that have to be colored in a special way. Default = {}
-              markedDates={{
-                '2012-05-20': { textColor: 'green' },
-                '2012-05-22': { startingDay: true, color: 'green' },
-                '2021-03-17': {
-                  selected: true,
-                  endingDay: true,
-                  color: 'green',
-                  textColor: 'gray',
-                },
-                '2021-03-18': {
-                  disabled: true,
-                  startingDay: true,
-                  color: 'green',
-                  endingDay: true,
-                },
-              }}
+              markedDates={dates}
               // Date marking style [simple/period/multi-dot/custom]. Default = 'simple'
               markingType="period"
+              onDayPress={(day) => {
+                setDates({
+                  [day.dateString]: {
+                    selected: true,
+                    startingDay: true,
+                    endingDay: true,
+                    color: 'green',
+                    textColor: '#fff',
+                  },
+                })
+              }}
             />
           </BottomSheet>
         ) : undefined}
