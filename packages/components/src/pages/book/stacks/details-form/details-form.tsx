@@ -1,14 +1,19 @@
 import React, { useState } from 'react'
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
-import { Button } from '../../../components/button'
-import { InputApp } from '../../../components/input'
-import inactiveHuman from '../../../../assets/human-inactive.png'
-import inactivePhone from '../../../../assets/phone-inactive.png'
-import inactiveCalendar from '../../../../assets/calendar-inactive.png'
-import inactiveGroup from '../../../../assets/group-inactive.png'
-import inactiveSofa from '../../../../assets/sofa-inactive.png'
+import { Calendar } from 'react-native-calendars'
+import { StackScreenProps } from '@react-navigation/stack'
+import { Button } from '../../../../components/button'
+import { InputApp } from '../../../../components/input'
+import inactiveHuman from '../../../../../assets/human-inactive.png'
+import inactivePhone from '../../../../../assets/phone-inactive.png'
+import inactiveCalendar from '../../../../../assets/calendar-inactive.png'
+import inactiveGroup from '../../../../../assets/group-inactive.png'
+import inactiveSofa from '../../../../../assets/sofa-inactive.png'
+import { BottomSheet } from './BottomSheet'
 
-export function BookingDetails(props) {
+export function BookingDetails(props: StackScreenProps<any>) {
+  const { navigation } = props
+  const [isVisible, setVisible] = useState(false)
   const [details, setDetails] = useState({
     name: '',
     contact: '',
@@ -71,7 +76,36 @@ export function BookingDetails(props) {
             imageStyle={{ width: 22.38, height: 16.61 }}
           />
         </View>
-        <Button onPress={() => {}}>Book</Button>
+        <Button onPress={() => setVisible(true)}>Book</Button>
+        {isVisible ? (
+          <BottomSheet
+            onDismiss={() => {
+              setVisible(false)
+            }}
+          >
+            <Calendar
+              // Collection of dates that have to be colored in a special way. Default = {}
+              markedDates={{
+                '2012-05-20': { textColor: 'green' },
+                '2012-05-22': { startingDay: true, color: 'green' },
+                '2021-03-17': {
+                  selected: true,
+                  endingDay: true,
+                  color: 'green',
+                  textColor: 'gray',
+                },
+                '2021-03-18': {
+                  disabled: true,
+                  startingDay: true,
+                  color: 'green',
+                  endingDay: true,
+                },
+              }}
+              // Date marking style [simple/period/multi-dot/custom]. Default = 'simple'
+              markingType="period"
+            />
+          </BottomSheet>
+        ) : undefined}
       </View>
     </ScrollView>
   )

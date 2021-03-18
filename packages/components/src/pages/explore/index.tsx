@@ -23,7 +23,7 @@ import { Book } from '../book'
 import chevronLeftDark from '../../../assets/chevron-left-dark.png'
 import chevronLeftLight from '../../../assets/chevron-left-light.png'
 import pic from '../../../assets/book-park-plaza.png'
-import { BookingDetails } from '../book/stacks/details'
+import { BookingDetails } from '../book/stacks/details-form/details-form'
 
 const Stack = createStackNavigator()
 
