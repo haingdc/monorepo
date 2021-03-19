@@ -26,7 +26,7 @@ interface AppAction {
   token?: string
 }
 
-export function App({ navigation }) {
+export function App() {
   const initialState = {
     isLoading: true,
     isSignout: false,

@@ -20,6 +20,7 @@
     "expo-blur": "^9.0.0",
     "ramda": "^0.27.1",
     "react-content-loader": "^6.0.2",
+    "react-native-calendars": "^1.1254.0",
     "react-native-device-info": "^8.0.5",
     "react-native-read-more-text": "^1.1.2",
     "react-native-reanimated": "1.13.2",
@@ -34,6 +35,7 @@
   },
   "devDependencies": {
     "@types/ramda": "^0.27.38",
+    "@types/react-native-calendars": "^1.505.1",
     "@types/react-native-read-more-text": "^1.0.0",
     "@types/react-native-snap-carousel": "^3.8.2"
   }

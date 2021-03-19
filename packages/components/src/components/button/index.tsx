@@ -10,16 +10,16 @@ import {
 } from 'react-native'
 import { AnyType } from '../../utils'
 
-export function Button(props: AppButtonPropType) {
-  const { children, onPress } = props
+export function Button(props: PropType) {
+  const { style, children, onPress } = props
   return (
-    <TouchableOpacity onPress={onPress} style={buttonStyles.appButtonContainer}>
+    <TouchableOpacity onPress={onPress} style={[ buttonStyles.appButtonContainer, style ]}>
       <Text style={buttonStyles.appButtonText}>{children}</Text>
     </TouchableOpacity>
   )
 }
 
-export function Button2(props: AppButtonPropType) {
+export function Button2(props: PropType) {
   const { children, onPress } = props
   const style = mergeRight(originalStyle, props.style as AnyType)
   return (
@@ -41,7 +41,7 @@ const originalStyle = {
   borderWidth: 1,
 }
 
-interface AppButtonPropType extends PropsWithChildren<any> {
+interface PropType extends PropsWithChildren<any> {
   style?: StyleProp<ViewStyle>
   onPress?: (event: GestureResponderEvent) => void
 }

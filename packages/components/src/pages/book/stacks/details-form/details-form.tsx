@@ -83,45 +83,47 @@ export function BookingDetails(props: StackScreenProps<any>) {
             imageStyle={{ width: 22.38, height: 16.61 }}
           />
         </View>
-        <Button onPress={() => setVisible(true)}>Book</Button>
+        <Button style={styles.submit} onPress={() => setVisible(true)}>Book</Button>
         {isVisible ? (
           <BottomSheet
             onDismiss={() => {
               setVisible(false)
             }}
           >
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                borderColor: 'red',
-                borderWidth: 1,
-              }}
-            >
-              <TouchableOpacity>
-                <Text onPress={() => setVisible(false)}>Cancel</Text>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Text onPress={() => setVisible(false)}>Done</Text>
-              </TouchableOpacity>
+            <View style={{ paddingBottom: 18, backgroundColor: '#fff', borderTopRightRadius: 10, borderTopLeftRadius: 10 }}>
+              <View
+                  style={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      backgroundColor: '#fff',
+                  }}
+              >
+                  <TouchableOpacity>
+                      <Text style={styles.calendarButton} onPress={() => setVisible(false)}>Cancel</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                      <Text style={[styles.calendarButton, { color: '#EF4339'}]} onPress={() => setVisible(false)}>Done</Text>
+                  </TouchableOpacity>
+              </View>
+              <View style={{ height: 1, borderBottomColor: '#E0E0E1', borderBottomWidth: 1, marginHorizontal: 18 }} />
+              <View style={{ paddingHorizontal: 18 }}>
+                  <Calendar
+                      markedDates={dates}
+                      markingType="period"
+                      onDayPress={(day) => {
+                        setDates({
+                            [day.dateString]: {
+                              selected: true,
+                              startingDay: true,
+                              endingDay: true,
+                              color: 'green',
+                              textColor: '#fff',
+                            },
+                        })
+                      }}
+                  />
+              </View>
             </View>
-            <Calendar
-              // Collection of dates that have to be colored in a special way. Default = {}
-              markedDates={dates}
-              // Date marking style [simple/period/multi-dot/custom]. Default = 'simple'
-              markingType="period"
-              onDayPress={(day) => {
-                setDates({
-                  [day.dateString]: {
-                    selected: true,
-                    startingDay: true,
-                    endingDay: true,
-                    color: 'green',
-                    textColor: '#fff',
-                  },
-                })
-              }}
-            />
           </BottomSheet>
         ) : undefined}
       </View>
@@ -159,5 +161,14 @@ const styles = StyleSheet.create({
     shadowRadius: 6.27,
     elevation: 10,
     borderRadius: 4,
+  },
+  submit: {
+    margin: 'auto',
+  },
+  calendarButton: {
+    fontSize: 15,
+    lineHeight: 17,
+    paddingVertical: 9,
+    paddingHorizontal: 18,
   },
 })
