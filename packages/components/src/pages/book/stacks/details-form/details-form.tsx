@@ -16,6 +16,7 @@ import inactiveCalendar from '../../../../../assets/calendar-inactive.png'
 import inactiveGroup from '../../../../../assets/group-inactive.png'
 import inactiveSofa from '../../../../../assets/sofa-inactive.png'
 import { BottomSheet } from './BottomSheet'
+import DateRangePicker from './DateRangePicker'
 
 export function BookingDetails(props: StackScreenProps<any>) {
   const { navigation } = props
@@ -116,12 +117,16 @@ export function BookingDetails(props: StackScreenProps<any>) {
                               selected: true,
                               startingDay: true,
                               endingDay: true,
-                              color: 'green',
+                              color: '#EF4339',
                               textColor: '#fff',
                             },
                         })
                       }}
                   />
+                  <DateRangePicker
+                  initialRange={['2018-04-01', '2018-04-10']}
+                  onSuccess={(s, e) => console.log(s + '||' + e)}
+                  theme={{ markColor: 'red', markTextColor: 'white' }}/>
               </View>
             </View>
           </BottomSheet>
