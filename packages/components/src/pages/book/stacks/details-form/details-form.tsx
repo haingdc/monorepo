@@ -36,49 +36,49 @@ export function BookingDetails(props: StackScreenProps<any>) {
         <View style={styles.wrapper}>
           <InputApp
             avatar={inactiveHuman}
-            type="emailAddress"
             style={styles.intput}
             value={details.name}
+            placeholder="Name"
             onChangeText={() => {}}
             imageStyle={{ width: 15.83, height: 16.22 }}
           />
           <InputApp
             avatar={inactivePhone}
-            type="emailAddress"
             style={styles.intput}
             value={details.name}
+            placeholder="Contact Number"
             onChangeText={() => {}}
             imageStyle={{ width: 18, height: 17 }}
           />
           <InputApp
             avatar={inactiveCalendar}
-            type="emailAddress"
             style={styles.intput}
             value={details.name}
+            placeholder="Check In"
             onChangeText={() => {}}
             imageStyle={{ width: 15.87, height: 16.46 }}
           />
           <InputApp
             avatar={inactiveCalendar}
-            type="emailAddress"
             style={styles.intput}
             value={details.name}
+            placeholder="Check Out"
             onChangeText={() => {}}
             imageStyle={{ width: 15.87, height: 16.46 }}
           />
           <InputApp
             avatar={inactiveGroup}
-            type="emailAddress"
             style={styles.intput}
             value={details.name}
+            placeholder="People"
             onChangeText={() => {}}
             imageStyle={{ width: 17.57, height: 12.23 }}
           />
           <InputApp
             avatar={inactiveSofa}
-            type="emailAddress"
             style={styles.intput}
             value={details.name}
+            placeholder="Rooms"
             onChangeText={() => {}}
             imageStyle={{ width: 22.38, height: 16.61 }}
           />
