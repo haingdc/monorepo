@@ -40,7 +40,7 @@ export function CalendarPicker(props: PropType) {
           <DateRangePicker
               initialRange={['2018-04-01', '2018-04-10']}
               onSuccess={(s, e) => console.log(s + '||' + e)}
-              theme={{ markColor: 'red', markTextColor: 'white' }}
+              theme={{ markColor: '#EF4339', markTextColor: 'white', markColor2: 'rgba(239, 67, 57, .19)', markTextColor2: 'black' }}
           />
       </View>
     </View>

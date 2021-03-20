@@ -1,8 +1,10 @@
 /* eslint-disable no-param-reassign */
 import React, { Component } from 'react'
-import { StyleSheet, View } from 'react-native'
+import {Text, Image, StyleSheet, View, TouchableOpacity } from 'react-native'
 import { Calendar } from 'react-native-calendars'
 import XDate from 'xdate';
+import chevronLeft from '../../../../../assets/chevron-left-calendar.png';
+import chevronRight from '../../../../../assets/chevron-right-calendar.png';
 
 interface Props {
   initialRange: any[];
@@ -11,6 +13,8 @@ interface Props {
   theme: {
     markColor: string;
     markTextColor: string;
+    markColor2: string;
+    markTextColor2: string;
   },
 };
 
@@ -60,7 +64,8 @@ export default class DateRangePicker extends Component<Props, State> {
         startingDay: true,
         color: this.props.theme.markColor,
         textColor: this.props.theme.markTextColor
-    }};
+      },
+    };
     this.setState({
       isFromDatePicked: true,
       isToDatePicked: false,
@@ -84,7 +89,8 @@ export default class DateRangePicker extends Component<Props, State> {
         for (let i = 1; i <= range; i += 1) {
           const tempDate = mFromDate.addDays(1).toString('yyyy-MM-dd')
           if (i < range) {
-            markedDates[tempDate] = {color: this.props.theme.markColor, textColor: this.props.theme.markTextColor}
+            markedDates[tempDate] = {color: this.props.theme.markColor2, textColor: this.props.theme.markTextColor2}
+            // markedDates[tempDate] = {color: this.props.theme.markColor, textColor: this.props.theme.markTextColor}
           } else {
             markedDates[tempDate] = {endingDay: true, color: this.props.theme.markColor, textColor: this.props.theme.markTextColor}
           }
@@ -115,11 +121,20 @@ export default class DateRangePicker extends Component<Props, State> {
 
   render() {
     return (
-      <Calendar {...this.props}
-                markingType="period"
-                current={this.state.fromDate}
-                markedDates={this.state.markedDates}
-                onDayPress={(day) => {this.onDayPress(day)}}/>
+      <Calendar
+        {...this.props}
+        style={{ minHeight: 365 }}
+        markingType="period"
+        current={this.state.fromDate}
+        markedDates={this.state.markedDates}
+        onDayPress={(day) => {this.onDayPress(day)}}
+        renderArrow={(direction) => {
+          if (direction == "left")
+            return <Image source={chevronLeft} style={{ width: 12, height: 20}} />;
+          return <Image source={chevronRight} style={{ width: 12, height: 20}} />;
+        }}
+
+      />
     )
   }
 }

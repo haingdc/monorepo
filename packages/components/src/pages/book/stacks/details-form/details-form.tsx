@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    paddingBottom: 0
   },
   header: {
     fontSize: 18,
