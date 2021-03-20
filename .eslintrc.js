@@ -19,6 +19,7 @@ module.exports = {
   },
   rules: {
     'prettier/prettier': 0,
+    'prefer-template': 'off',
     'eqeqeq': 0,
     'global-require': 0,
     'import/prefer-default-export': 'off',
