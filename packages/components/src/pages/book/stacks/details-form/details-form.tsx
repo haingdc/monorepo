@@ -3,10 +3,8 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from 'react-native'
-import { Calendar } from 'react-native-calendars'
 import { StackScreenProps } from '@react-navigation/stack'
 import { Button } from '../../../../components/button'
 import { InputApp } from '../../../../components/input'
@@ -16,7 +14,7 @@ import inactiveCalendar from '../../../../../assets/calendar-inactive.png'
 import inactiveGroup from '../../../../../assets/group-inactive.png'
 import inactiveSofa from '../../../../../assets/sofa-inactive.png'
 import { BottomSheet } from './BottomSheet'
-import DateRangePicker from './DateRangePicker'
+import { CalendarPicker } from '../../sub-components/calendar'
 
 export function BookingDetails(props: StackScreenProps<any>) {
   const { navigation } = props
@@ -86,49 +84,8 @@ export function BookingDetails(props: StackScreenProps<any>) {
         </View>
         <Button style={styles.submit} onPress={() => setVisible(true)}>Book Now</Button>
         {isVisible ? (
-          <BottomSheet
-            onDismiss={() => {
-              setVisible(false)
-            }}
-          >
-            <View style={{ paddingBottom: 18, backgroundColor: '#fff', borderTopRightRadius: 10, borderTopLeftRadius: 10 }}>
-              <View
-                  style={{
-                      flexDirection: 'row',
-                      justifyContent: 'space-between',
-                      backgroundColor: '#fff',
-                  }}
-              >
-                  <TouchableOpacity>
-                      <Text style={styles.calendarButton} onPress={() => setVisible(false)}>Cancel</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity>
-                      <Text style={[styles.calendarButton, { color: '#EF4339'}]} onPress={() => setVisible(false)}>Done</Text>
-                  </TouchableOpacity>
-              </View>
-              <View style={{ height: 1, borderBottomColor: '#E0E0E1', borderBottomWidth: 1, marginHorizontal: 18 }} />
-              <View style={{ paddingHorizontal: 18 }}>
-                  <Calendar
-                      markedDates={dates}
-                      markingType="period"
-                      onDayPress={(day) => {
-                        setDates({
-                            [day.dateString]: {
-                              selected: true,
-                              startingDay: true,
-                              endingDay: true,
-                              color: '#EF4339',
-                              textColor: '#fff',
-                            },
-                        })
-                      }}
-                  />
-                  <DateRangePicker
-                  initialRange={['2018-04-01', '2018-04-10']}
-                  onSuccess={(s, e) => console.log(s + '||' + e)}
-                  theme={{ markColor: 'red', markTextColor: 'white' }}/>
-              </View>
-            </View>
+          <BottomSheet onDismiss={() => setVisible(false)}>
+            <CalendarPicker onCancel={() => setVisible(false)} onDone={() => setVisible(false)} />
           </BottomSheet>
         ) : undefined}
       </View>
