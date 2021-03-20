@@ -84,7 +84,7 @@ export function BookingDetails(props: StackScreenProps<any>) {
             imageStyle={{ width: 22.38, height: 16.61 }}
           />
         </View>
-        <Button style={styles.submit} onPress={() => setVisible(true)}>Book</Button>
+        <Button style={styles.submit} onPress={() => setVisible(true)}>Book Now</Button>
         {isVisible ? (
           <BottomSheet
             onDismiss={() => {
@@ -168,7 +168,8 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   submit: {
-    margin: 'auto',
+    alignSelf: 'center',
+    marginTop: 48,
   },
   calendarButton: {
     fontSize: 15,
