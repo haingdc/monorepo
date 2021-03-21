@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   ScrollView,
   StyleSheet,
@@ -15,11 +15,14 @@ import inactiveGroup from '../../../../../assets/group-inactive.png'
 import inactiveSofa from '../../../../../assets/sofa-inactive.png'
 import { BottomSheet } from './BottomSheet'
 import { CalendarPicker } from '../../sub-components/calendar'
+import { Rooms } from '../../sub-components/rooms'
+
+type Field = 'name' | 'contact' | 'checkIn' | 'checkOut' | 'people' | 'rooms' | undefined;
 
 export function BookingDetails(props: StackScreenProps<any>) {
-  const { navigation } = props
+  const { navigation } = props;
   const [isVisible, setVisible] = useState(false)
-  const [dates, setDates] = useState<any>({})
+  const [activeField, setActiveField] = useState<Field>();
   const [details, setDetails] = useState({
     name: '',
     contact: '',
@@ -27,7 +30,21 @@ export function BookingDetails(props: StackScreenProps<any>) {
     checkOut: '',
     people: '',
     rooms: '',
+  });
+  useEffect(() => {
+
   })
+  function handleDateInput(fieldName: Field) {
+    return function showDatePicker() {
+      setActiveField(fieldName);
+      if (fieldName == 'checkIn' || fieldName == 'checkOut') {
+        // if (inputRef) {
+        //   (inputRef.current as any).blur();
+        // }
+        setVisible(true);
+      }
+    }
+  };
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -64,6 +81,7 @@ export function BookingDetails(props: StackScreenProps<any>) {
             placeholder="Check Out"
             onChangeText={() => {}}
             imageStyle={{ width: 15.87, height: 16.46 }}
+            onFocus={handleDateInput('checkOut')}
           />
           <InputApp
             avatar={inactiveGroup}
@@ -83,9 +101,14 @@ export function BookingDetails(props: StackScreenProps<any>) {
           />
         </View>
         <Button style={styles.submit} onPress={() => setVisible(true)}>Book Now</Button>
-        {isVisible ? (
+        {/* {isVisible ? (
           <BottomSheet onDismiss={() => setVisible(false)}>
             <CalendarPicker onCancel={() => setVisible(false)} onDone={() => setVisible(false)} />
+          </BottomSheet>
+        ) : undefined} */}
+        {isVisible ? (
+          <BottomSheet onDismiss={() => setVisible(false)}>
+            <Rooms onCancel={() => setVisible(false)} onDone={() => setVisible(false)} />
           </BottomSheet>
         ) : undefined}
       </View>
