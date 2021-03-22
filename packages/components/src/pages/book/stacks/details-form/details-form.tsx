@@ -81,7 +81,6 @@ export function BookingDetails(props: StackScreenProps<any>) {
             placeholder="Check Out"
             onChangeText={() => {}}
             imageStyle={{ width: 15.87, height: 16.46 }}
-            onFocus={handleDateInput('checkOut')}
           />
           <InputApp
             avatar={inactiveGroup}
