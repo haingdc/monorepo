@@ -8,7 +8,7 @@ import calendar from '../../../../../assets/calendar.png'
 import drop from '../../../../../assets/drop.png'
 import location from '../../../../../assets/place.png'
 import group from '../../../../../assets/group.png'
-import { InputApp } from '../../../../components/input'
+import { InnerInput } from '../../../../components/input'
 import cardPic1 from '../../../../../assets/card_s_taj-vista.png'
 import cardPic2 from '../../../../../assets/card_s_sheraton.png'
 import {
@@ -79,7 +79,7 @@ export function Index(props: StackScreenProps<any>) {
           paddingBottom: 40,
         }}
       >
-        <InputApp
+        <InnerInput
           type="location"
           avatar={location}
           style={styles.intput}
@@ -87,7 +87,7 @@ export function Index(props: StackScreenProps<any>) {
           onChangeText={setPlace}
           imageStyle={{ width: 13.43, height: 18.77 }}
         />
-        <InputApp
+        <InnerInput
           type="location"
           avatar={calendar}
           style={styles.intput}
@@ -95,7 +95,7 @@ export function Index(props: StackScreenProps<any>) {
           onChangeText={setGoStart}
           imageStyle={{ width: 13.43, height: 18.77 }}
         />
-        <InputApp
+        <InnerInput
           type="location"
           avatar={calendar}
           style={styles.intput}
@@ -103,7 +103,7 @@ export function Index(props: StackScreenProps<any>) {
           onChangeText={setGoEnd}
           imageStyle={{ width: 13.43, height: 18.77 }}
         />
-        <InputApp
+        <InnerInput
           type="location"
           avatar={group}
           style={styles.intput}

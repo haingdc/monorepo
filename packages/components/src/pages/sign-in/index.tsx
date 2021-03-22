@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image } from 'react-native'
 import { StackScreenProps } from '@react-navigation/stack'
 import { Button } from '../../components/button'
 import { AuthContext } from '../../contexts/auth'
-import { InputApp } from '../../components/input'
+import { InnerInput } from '../../components/input'
 import authenPic from '../../../assets/authenPic.png'
 import mail from '../../../assets/mail.png'
 import lock from '../../../assets/lock.png'
@@ -25,7 +25,7 @@ export function SignIn(props: StackScreenProps<any>) {
       <Image style={styles.slidePhoto1} source={authenPic} />
       <View style={{ height: 95 }} />
       <View style={styles.wrapper}>
-        <InputApp
+        <InnerInput
           avatar={mail}
           type="emailAddress"
           style={styles.intput}
@@ -33,7 +33,7 @@ export function SignIn(props: StackScreenProps<any>) {
           onChangeText={setAddress}
           imageStyle={{ width: 17.69, height: 12.08 }}
         />
-        <InputApp
+        <InnerInput
           type="password"
           avatar={lock}
           style={styles.intput2}

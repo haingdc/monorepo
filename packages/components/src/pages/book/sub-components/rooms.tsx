@@ -3,7 +3,6 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import DateRangePicker from "../stacks/details-form/DateRangePicker";
 import minus from '../../../../assets/minus.png';
 import plus from '../../../../assets/plus.png';
-import { color } from "react-native-reanimated";
 
 export function Rooms(props: PropType) {
   const { onCancel, onDone} = props;

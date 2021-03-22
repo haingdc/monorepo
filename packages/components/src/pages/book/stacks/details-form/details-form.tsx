@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import {
   ScrollView,
   StyleSheet,
@@ -7,7 +7,7 @@ import {
 } from 'react-native'
 import { StackScreenProps } from '@react-navigation/stack'
 import { Button } from '../../../../components/button'
-import { InputApp } from '../../../../components/input'
+import { InputApp, RefInput } from '../../../../components/input'
 import inactiveHuman from '../../../../../assets/human-inactive.png'
 import inactivePhone from '../../../../../assets/phone-inactive.png'
 import inactiveCalendar from '../../../../../assets/calendar-inactive.png'
@@ -20,9 +20,11 @@ import { Rooms } from '../../sub-components/rooms'
 type Field = 'name' | 'contact' | 'checkIn' | 'checkOut' | 'people' | 'rooms' | undefined;
 
 export function BookingDetails(props: StackScreenProps<any>) {
-  const { navigation } = props;
   const [isVisible, setVisible] = useState(false)
   const [activeField, setActiveField] = useState<Field>();
+  const  checkinRef = useRef<RefInput>(null);
+  const checkoutRef = useRef<RefInput>(null);
+  const    roomsRef = useRef<RefInput>(null);
   const [details, setDetails] = useState({
     name: '',
     contact: '',
@@ -34,14 +36,23 @@ export function BookingDetails(props: StackScreenProps<any>) {
   useEffect(() => {
 
   })
-  function handleDateInput(fieldName: Field) {
-    return function showDatePicker() {
+  function handleInput(fieldName: Field) {
+    return function showBottomSheets() {
       setActiveField(fieldName);
-      if (fieldName == 'checkIn' || fieldName == 'checkOut') {
-        // if (inputRef) {
-        //   (inputRef.current as any).blur();
-        // }
+      if (fieldName == 'checkIn') {
+        checkinRef.current?.blur();
         setVisible(true);
+        setActiveField(fieldName);
+      } else
+      if (fieldName == 'checkOut') {
+        checkoutRef.current?.blur();
+        setVisible(true);
+        setActiveField(fieldName);
+      } else
+      if (fieldName == 'rooms') {
+        roomsRef.current?.blur();
+        setVisible(true);
+        setActiveField(fieldName);
       }
     }
   };
@@ -73,6 +84,8 @@ export function BookingDetails(props: StackScreenProps<any>) {
             placeholder="Check In"
             onChangeText={() => {}}
             imageStyle={{ width: 15.87, height: 16.46 }}
+            ref={checkinRef}
+            onFocus={handleInput('checkIn')}
           />
           <InputApp
             avatar={inactiveCalendar}
@@ -81,6 +94,8 @@ export function BookingDetails(props: StackScreenProps<any>) {
             placeholder="Check Out"
             onChangeText={() => {}}
             imageStyle={{ width: 15.87, height: 16.46 }}
+            ref={checkoutRef}
+            onFocus={handleInput('checkOut')}
           />
           <InputApp
             avatar={inactiveGroup}
@@ -97,15 +112,17 @@ export function BookingDetails(props: StackScreenProps<any>) {
             placeholder="Rooms"
             onChangeText={() => {}}
             imageStyle={{ width: 22.38, height: 16.61 }}
+            ref={roomsRef}
+            onFocus={handleInput('rooms')}
           />
         </View>
-        <Button style={styles.submit} onPress={() => setVisible(true)}>Book Now</Button>
-        {/* {isVisible ? (
+        <Button style={styles.submit}>Book Now</Button>
+        { (isVisible && ( activeField == 'checkIn' || activeField == 'checkOut' ))  ? (
           <BottomSheet onDismiss={() => setVisible(false)}>
             <CalendarPicker onCancel={() => setVisible(false)} onDone={() => setVisible(false)} />
           </BottomSheet>
-        ) : undefined} */}
-        {isVisible ? (
+        ) : undefined}
+        { (isVisible && activeField == 'rooms') ? (
           <BottomSheet onDismiss={() => setVisible(false)}>
             <Rooms onCancel={() => setVisible(false)} onDone={() => setVisible(false)} />
           </BottomSheet>
