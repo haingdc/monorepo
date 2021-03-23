@@ -56,6 +56,17 @@ export function BookingDetails(props: StackScreenProps<any>) {
       }
     }
   };
+
+  function handleChange(fieldName: Field) {
+    return function onChangeText(text) {
+      setDetails(details => {
+        return {
+          ...details,
+          [fieldName as string]: text,
+        };
+      });
+    }
+  }
   return (
     <ScrollView>
       <View style={styles.container}>
@@ -66,21 +77,21 @@ export function BookingDetails(props: StackScreenProps<any>) {
             style={styles.intput}
             value={details.name}
             placeholder="Name"
-            onChangeText={() => {}}
+            onChangeText={handleChange('name')}
             imageStyle={{ width: 15.83, height: 16.22 }}
           />
           <InputApp
             avatar={inactivePhone}
             style={styles.intput}
-            value={details.name}
+            value={details.contact}
             placeholder="Contact Number"
-            onChangeText={() => {}}
+            onChangeText={handleChange('contact')}
             imageStyle={{ width: 18, height: 17 }}
           />
           <InputApp
             avatar={inactiveCalendar}
             style={styles.intput}
-            value={details.name}
+            value={details.checkIn}
             placeholder="Check In"
             onChangeText={() => {}}
             imageStyle={{ width: 15.87, height: 16.46 }}
@@ -90,7 +101,7 @@ export function BookingDetails(props: StackScreenProps<any>) {
           <InputApp
             avatar={inactiveCalendar}
             style={styles.intput}
-            value={details.name}
+            value={details.checkOut}
             placeholder="Check Out"
             onChangeText={() => {}}
             imageStyle={{ width: 15.87, height: 16.46 }}
@@ -100,7 +111,7 @@ export function BookingDetails(props: StackScreenProps<any>) {
           <InputApp
             avatar={inactiveGroup}
             style={styles.intput}
-            value={details.name}
+            value={details.people}
             placeholder="People"
             onChangeText={() => {}}
             imageStyle={{ width: 17.57, height: 12.23 }}
@@ -108,7 +119,7 @@ export function BookingDetails(props: StackScreenProps<any>) {
           <InputApp
             avatar={inactiveSofa}
             style={styles.intput}
-            value={details.name}
+            value={details.rooms}
             placeholder="Rooms"
             onChangeText={() => {}}
             imageStyle={{ width: 22.38, height: 16.61 }}
