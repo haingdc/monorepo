@@ -15,6 +15,7 @@ import {
   ProductList,
   ProductListSkeleton,
 } from '../../../../containers/product-list'
+import { doWorks } from '../../../../utils/lotOfWorks'
 
 export const list = [
   { title: 'Sheraton Grand', source: cardPic1, price: '5999' },
@@ -65,6 +66,7 @@ export function Index(props: StackScreenProps<any>) {
     setTimeout(() => {
       dispatch({ type: 'fetchingSuccess' })
     }, getRandomFloat(1400, 2800))
+    doWorks();
   }
 
   return (
