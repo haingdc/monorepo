@@ -32,6 +32,8 @@ module.exports = function override(config, env) {
   // })
 
   // fs.writeFile('todo2.txt', path.resolve(__dirname, "../../node_modules/react-native-vector-icons"), function noop() {})
+  // fs.writeFile('todo-log.txt', config.devtool, function noop() {})
+  config.devtool = 'eval-source-map';
 
   config.module.rules.push({
     test: /\.js$/,

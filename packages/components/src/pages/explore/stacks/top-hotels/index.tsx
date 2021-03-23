@@ -51,7 +51,6 @@ const hotelList = [
 
 export function TopHotels(props: StackScreenProps<any>) {
   const { navigation } = props
-  const [flag, toggleFlag] = useToggle(false)
   const [list, setList] = useState(hotelList)
   function noop(id: string) {}
 
