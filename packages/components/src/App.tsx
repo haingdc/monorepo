@@ -118,44 +118,43 @@ export function App() {
 
   return (
     <AuthContext.Provider value={authContext}>
-      <SafeAreaProvider /* style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }} */
-      >
+      <SafeAreaProvider>
         <NavigationContainer>
           <Stack.Navigator
             mode="modal"
             headerMode="screen"
             screenOptions={{ headerShown: false, gestureEnabled: true }}
           >
-            {state.isLoading ? (
-              // We haven't finished checking for the token yet
-              <Stack.Screen name="Splash" component={SplashScreen} />
-            ) : !state.userToken ? (
-              // No token found, user isn't signed in
-              [
-                <Stack.Screen
-                  key="Welcome"
-                  name="Welcome"
-                  component={Welcome}
-                />,
-                <Stack.Screen
-                  key="SignIn"
-                  name="SignIn"
-                  options={{
-                    title: 'Sign in',
-                    animationTypeForReplace: state.isSignout ? 'pop' : 'push', // When logging out, a pop animation feels intuitive
-                  }}
-                  component={SignIn}
-                />,
-                <Stack.Screen name="SignUp" component={SignUp} key="SignUp" />,
-              ]
-            ) : (
-              // User is signed in
-              <Stack.Screen
-                name="Explore"
-                options={{ headerShown: false }}
-                component={BottomTabs}
-              />
-            )}
+            {
+                                    state.isLoading
+
+                                          ?
+
+                    // We haven't finished checking for the token yet
+                    <Stack.Screen name="Splash" component={SplashScreen} />
+
+                                          :
+
+                                  !state.userToken
+
+                                         ?
+
+                    // No token found, user isn't signed in
+                    [
+                      <Stack.Screen key="Welcome" name="Welcome" component={Welcome} />,
+                      <Stack.Screen key="SignUp"  name="SignUp"  component={SignUp} />,
+                      <Stack.Screen key="SignIn"  name="SignIn"  component={SignIn}
+                        options={{
+                          title: 'Sign in',
+                          animationTypeForReplace: state.isSignout ? 'pop' : 'push', // When logging out, a pop animation feels intuitive
+                        }}
+                      />,
+                   ]
+                                        :
+
+                  // User is signed in
+                  <Stack.Screen name="Explore" options={{ headerShown: false }} component={BottomTabs} />
+            }
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>
