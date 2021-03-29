@@ -18,6 +18,7 @@ Tech Stack: TypeScript v4, React Native v0.63 & Create React App v4.
 ![calendar](./screenshots/calendar.png)
 ![calendar-range-picker](./screenshots/calendar-range-picker.png)
 ![rooms](./screenshots/rooms.png)
+<img src="./screenshots/slide1.png" width="375" height="667" />
 
 
 ### How to run
