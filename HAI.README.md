@@ -1,4 +1,4 @@
-cd mobile/ios
+cd packages/mobile/ios
 pod update
 sudo gem install cocoapods
 
