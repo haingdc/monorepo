@@ -16,7 +16,7 @@ Tech Stack: TypeScript v4, React Native v0.63 & Create React App v4.
 <img width="375" height="811" alt="park-plaza" src="./screenshots/park-plaza.png" />
 <img width="375" height="811" alt="booking-form" src="./screenshots/booking-form.png" />
 <img width="375" height="811" alt="calendar" src="./screenshots/calendar.png" />
-<img width="375" height="811" alt="calendar-range-picker" src="./screenshots/calendar-rang-picker.png" />
+<img width="375" height="811" alt="calendar-range-picker" src="./screenshots/calendar-range-picker.png" />
 <img width="375" height="811" alt="rooms" src="./screenshots/rooms.png" />
 
 
